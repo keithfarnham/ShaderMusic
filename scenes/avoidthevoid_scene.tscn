@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu7spjaendgs4"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://main.gd" id="1_mj0e4"]
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_mj0e4"]
 [ext_resource type="Shader" uid="uid://f3bj5llvkcrf" path="res://shaders/avoidthevoid.gdshader" id="2_sbkw4"]
 [ext_resource type="AudioStream" uid="uid://bmpc34karas8x" path="res://audio/Avoid the Void.wav" id="3_0aud1"]
 
