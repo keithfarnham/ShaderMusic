@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://o06dhycxveqi"]
+
+[ext_resource type="Script" uid="uid://ia572ygiwai6" path="res://button.gd" id="1_piifq"]
+
+[node name="start_menu" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 112.0
+offset_top = 74.0
+offset_right = 396.0
+offset_bottom = 314.0
+text = "start"
+script = ExtResource("1_piifq")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
