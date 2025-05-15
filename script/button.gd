@@ -6,10 +6,10 @@ var timeout = 0.0
 const AUTO_START = 5.0;
 
 func _process(delta):
-    timeout += delta
-    if timeout > AUTO_START:
-         get_tree().change_scene_to_file("res://scenes/avoidthevoid_scene.tscn")
+	timeout += delta
+	if timeout > AUTO_START:
+		get_tree().change_scene_to_file("res://scenes/spacesims3_scene.tscn")
 
 func _on_pressed():
-    print("pressed")
-    get_tree().change_scene_to_file("res://scenes/avoidthevoid_scene.tscn")
+	print("pressed")
+	get_tree().change_scene_to_file("res://scenes/spacesims3_scene.tscn")
