@@ -1,10 +1,12 @@
 extends Node2D
 
+#spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
+
 const VU_COUNT = 100
 const FREQ_MAX = 11050.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
-const HEIGHT_SCALE = 8.0
+const HEIGHT_SCALE = 300.0
 
 @onready var sprite = $shader_sprite
 @onready var audioStream = $AudioStreamPlayer
