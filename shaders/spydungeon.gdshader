@@ -91,7 +91,7 @@ vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance
     float tunnelDist = sdTunnel(adjustedPlanePosition / 2.0, tunnelWH);
 
     float grad = clamp(0.2 + 0.8 * (adjustedPlanePosition.y + 1.0) * 0.5, 0.0, 1.0);
-    float c = 0.5 + 0.5 * cos(TIME); // t in [0,1]
+    float c = 0.5 + 0.5 * cos(TIME);
     vec3 outsideColor = mix(vec3(0.2, 0.0, 0.0 + c), vec3(1.0, 0.2 + c, 0.2), grad);
     vec3 insideColor = palette(planeIndex + 2.0 + fft);
     colorOutput.xyz = (tunnelDist > 0.0) ? outsideColor: insideColor;

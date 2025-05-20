@@ -2,10 +2,10 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 100
+const VU_COUNT = 30
 const FREQ_MAX = 11050.0
 const MIN_DB = 60
-const ANIMATION_SPEED = 0.1
+const ANIMATION_SPEED = 0.05
 const HEIGHT_SCALE = 300.0
 
 @onready var sprite = $shader_sprite
@@ -25,6 +25,7 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _process(delta):
 	var prev_hz = 0
@@ -50,4 +51,3 @@ func _process(delta):
 
 func _on_audio_start_timer_timeout():
 	audioStream.play()
-	#audioStream.seek(170)

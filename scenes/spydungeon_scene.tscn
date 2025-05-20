@@ -31,8 +31,8 @@ script = ExtResource("1_1oekq")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2c62f")
-position = Vector2(960, 540)
-scale = Vector2(1920, 1080)
+position = Vector2(1920, 1080)
+scale = Vector2(3840, 2160)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -40,12 +40,12 @@ stream = ExtResource("3_1oekq")
 
 [node name="Title" type="RichTextLabel" parent="."]
 offset_left = 64.0
-offset_right = 689.0
-offset_bottom = 68.0
+offset_right = 975.0
+offset_bottom = 149.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "uhdude - SPY DUNGEON"
 
