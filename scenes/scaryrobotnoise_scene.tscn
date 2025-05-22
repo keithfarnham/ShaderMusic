@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://brkpxqpeqnnpw"]
+
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_11wlu"]
+[ext_resource type="Shader" uid="uid://dfd6alftgondi" path="res://shaders/scaryrobotnoise.gdshader" id="2_8djyp"]
+[ext_resource type="AudioStream" uid="uid://cjfk0liy3oqyq" path="res://audio/bruhmoment.wav" id="3_prjji"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
+shader = ExtResource("2_8djyp")
+shader_parameter/planeDist = 0.43
+shader_parameter/furthest = 25.0
+shader_parameter/fadeFrom = 8.0
+shader_parameter/fadeOutMod = -3.875
+shader_parameter/radius = 0.5
+shader_parameter/antiAliasBaseValue = 20.0
+shader_parameter/slowVal = 0.415
+shader_parameter/rayDepth = 2.755
+shader_parameter/rayDirMod = Vector3(0.04, 0, 0)
+shader_parameter/rayOriginMod = Vector3(0, 0, 0)
+shader_parameter/planeZMod = 0.0
+shader_parameter/zoomValue = 7.0
+shader_parameter/pixelCoords_X_mod = 0.0
+shader_parameter/pixelCoords_Y_mod = 0.2
+shader_parameter/pathA = Vector2(0.5, 0.1)
+shader_parameter/pathB = Vector2(0.34, 0.135)
+shader_parameter/useUV = false
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_11wlu")
+
+[node name="shader_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2c62f")
+position = Vector2(1920, 1080)
+scale = Vector2(3840, 2160)
+texture = SubResource("PlaceholderTexture2D_gyfs4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_prjji")
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 64.0
+offset_right = 1163.0
+offset_bottom = 149.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "uhdude - SCARY ROBOT NOISE"
+
+[node name="AudioStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
