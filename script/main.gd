@@ -2,11 +2,11 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 10
-const FREQ_MAX = 20000.0
-const MIN_DB = 120
-const ANIMATION_SPEED = 0.05
-const HEIGHT_SCALE = 300.0
+const VU_COUNT = 20
+const FREQ_MAX = 10000.0
+const MIN_DB = 60
+const ANIMATION_SPEED = 0.1
+const HEIGHT_SCALE = 100.0
 
 @onready var sprite = $shader_sprite
 @onready var audioStream = $AudioStreamPlayer
@@ -47,7 +47,7 @@ func _process(delta):
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	sprite.get_material().set_shader_parameter("freq_data", fft)
-
+ 
 
 func _on_audio_start_timer_timeout():
 	audioStream.play()
