@@ -2,7 +2,7 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 20
+const VU_COUNT = 100
 const FREQ_MAX = 10000.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1

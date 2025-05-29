@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6608023rfp00"]
+
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_rhsuf"]
+[ext_resource type="Shader" uid="uid://dl6fhomnso4h1" path="res://shaders/darkalley.gdshader" id="2_jdt8m"]
+[ext_resource type="AudioStream" uid="uid://dxwxl6h5qwmtm" path="res://audio/darkalley.wav" id="3_367t1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
+shader = ExtResource("2_jdt8m")
+shader_parameter/planeDist = 2.0
+shader_parameter/furthest = 10.0
+shader_parameter/fadeFrom = 0.405
+shader_parameter/fadeOutMod = 1.0
+shader_parameter/shapeRadius = 0.015
+shader_parameter/antiAliasBaseValue = 3.0
+shader_parameter/slowVal = 2.4
+shader_parameter/rayDepth = 1.75
+shader_parameter/rayDirMod = Vector3(0.82, -0.26, -0.61)
+shader_parameter/rayOriginMod = Vector3(0, 0, 0)
+shader_parameter/planeZMod = 0.0
+shader_parameter/zoomValue = 1.0
+shader_parameter/pixelCoords_mod = Vector2(0, 0)
+shader_parameter/pathA = Vector2(0, 0)
+shader_parameter/pathB = Vector2(0, 0)
+shader_parameter/paletteColor1 = Vector3(-0.07, -0.12, 0.135)
+shader_parameter/paletteColor2 = Vector3(-0.025, -0.1, -0.06)
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_rhsuf")
+
+[node name="shader_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2c62f")
+position = Vector2(1920, 1080)
+scale = Vector2(3840, 2160)
+texture = SubResource("PlaceholderTexture2D_gyfs4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_367t1")
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 64.0
+offset_right = 848.0
+offset_bottom = 149.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "uhdude - DARK ALLEY"
+
+[node name="AudioStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
