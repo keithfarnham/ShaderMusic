@@ -63,14 +63,14 @@ float sdChamferBox(vec2 p, vec2 b, float chamfer )
 
     p = (p.y>p.x) ? p.yx : p.xy;
     p.y += chamfer;
-    
+
     const float k = 1.0-sqrt(2.0);
     if( p.y<0.0 && p.y+p.x*k<0.0 )
         return p.x;
-    
+
     if( p.x<p.y )
-        return (p.x+p.y)*sqrt(0.5);    
-    
+        return (p.x+p.y)*sqrt(0.5);
+
     return length(p);
 }
 
