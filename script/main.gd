@@ -25,7 +25,7 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _process(delta):
 	var prev_hz = 0

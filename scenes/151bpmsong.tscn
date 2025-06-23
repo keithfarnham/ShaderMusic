@@ -1,0 +1,234 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhp3f04plvsef"]
+
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_5poic"]
+[ext_resource type="AudioStream" uid="uid://c52i31dt4tteh" path="res://audio/151bpmsong.wav" id="2_5poic"]
+[ext_resource type="Shader" uid="uid://cxlev3ua1r48g" path="res://shaders/151bpmsong.gdshader" id="3_5poic"]
+[ext_resource type="Texture2D" uid="uid://c37oola41lbqx" path="res://textures/PICT0012.jpg" id="4_okwqe"]
+[ext_resource type="Texture2D" uid="uid://b7j76p2wjftkp" path="res://textures/PICT0024.jpg" id="5_okwqe"]
+[ext_resource type="Texture2D" uid="uid://bdwtxldwqhwhe" path="res://textures/PICT0011.jpg" id="6_cegkj"]
+[ext_resource type="Texture2D" uid="uid://6es0l7qqra6l" path="res://textures/PICT0114.jpg" id="7_7o4be"]
+[ext_resource type="Script" uid="uid://bulythbh033fh" path="res://scenes/debug_controls.gd" id="8_7o4be"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
+shader = ExtResource("3_5poic")
+shader_parameter/planeDist = 5.0
+shader_parameter/furthest = 10.0
+shader_parameter/fadeFrom = 8.0
+shader_parameter/fadeOutMod = -0.54
+shader_parameter/shapeRadius = 0.5
+shader_parameter/antiAliasBaseValue = 3.0
+shader_parameter/slowVal = 4.0
+shader_parameter/rayDepth = 15.0
+shader_parameter/rayDirMod = Vector3(0.53, -0.36, -0.11)
+shader_parameter/rayOriginMod = Vector3(1.15, 0, 0)
+shader_parameter/planeZMod = 0.0
+shader_parameter/zoomValue = 3.69
+shader_parameter/finalColorMod = 1.5
+shader_parameter/pixelCoords_mod = Vector2(0.2, 1.43)
+shader_parameter/pathA = Vector2(0, 0.4)
+shader_parameter/pathB = Vector2(0, 0.455)
+shader_parameter/paletteColor1 = Vector3(0.08, 0.35, 0.405)
+shader_parameter/paletteColor2 = Vector3(0.4, 0.845, 0.7)
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/texture1 = ExtResource("4_okwqe")
+shader_parameter/texture2 = ExtResource("5_okwqe")
+shader_parameter/texture3 = ExtResource("6_cegkj")
+shader_parameter/texture4 = ExtResource("7_7o4be")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4gwn4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5poic")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5poic")
+
+[node name="Title" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = 64.0
+offset_right = 856.0
+offset_bottom = 115.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "uhdude - 151 BPM SONG"
+
+[node name="AudioStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="shader_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2c62f")
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_4gwn4")
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+offset_left = 1439.0
+offset_right = 1797.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Debug Controls"
+metadata/_edit_use_anchors_ = true
+
+[node name="DebugControls" type="Control" parent="."]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1394.0
+offset_top = 85.0
+offset_right = 1917.0
+offset_bottom = 488.0
+script = ExtResource("8_7o4be")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="DebugControls"]
+layout_mode = 2
+offset_right = 521.0
+offset_bottom = 373.0
+
+[node name="Palette1_red" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+drag_area_margin_begin = 965
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/Palette1_red"]
+layout_mode = 2
+text = "Palette 1 - Red"
+
+[node name="Palette1_red" type="HSlider" parent="DebugControls/HBoxContainer/Palette1_red"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette1_green" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/Palette1_green"]
+layout_mode = 2
+text = "Palette 1 - Green"
+
+[node name="Palette1_green" type="HSlider" parent="DebugControls/HBoxContainer/Palette1_green"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette1_blue" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/Palette1_blue"]
+layout_mode = 2
+text = "Palette 1 - Blue"
+
+[node name="Palette1_blue" type="HSlider" parent="DebugControls/HBoxContainer/Palette1_blue"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette2_red" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+drag_area_margin_begin = 965
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/Palette2_red"]
+layout_mode = 2
+text = "Palette 2 - Red"
+
+[node name="Palette2_red" type="HSlider" parent="DebugControls/HBoxContainer/Palette2_red"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette2_green" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/Palette2_green"]
+layout_mode = 2
+text = "Palette 2 - Green"
+
+[node name="Palette2_green" type="HSlider" parent="DebugControls/HBoxContainer/Palette2_green"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette2_blue" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/Palette2_blue"]
+layout_mode = 2
+text = "Palette 2 - Blue"
+
+[node name="Palette2_blue" type="HSlider" parent="DebugControls/HBoxContainer/Palette2_blue"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="RayMod_x" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+drag_area_margin_begin = 965
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/RayMod_x"]
+layout_mode = 2
+text = "Ray Modifier X"
+
+[node name="raymod_x" type="HSlider" parent="DebugControls/HBoxContainer/RayMod_x"]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+
+[node name="RayMod_y" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/RayMod_y"]
+layout_mode = 2
+text = "Ray Modifier Y"
+
+[node name="raymod_y" type="HSlider" parent="DebugControls/HBoxContainer/RayMod_y"]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+
+[node name="RayMod_z" type="HSplitContainer" parent="DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="DebugControls/HBoxContainer/RayMod_z"]
+layout_mode = 2
+text = "Ray Modifier Z"
+
+[node name="raymod_z" type="HSlider" parent="DebugControls/HBoxContainer/RayMod_z"]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+
+[connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_red/Palette1_red" to="DebugControls" method="_on_palette_1_red_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_green/Palette1_green" to="DebugControls" method="_on_palette_1_green_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_blue/Palette1_blue" to="DebugControls" method="_on_palette_1_blue_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette2_red/Palette2_red" to="DebugControls" method="_on_palette_2_red_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette2_green/Palette2_green" to="DebugControls" method="_on_palette_2_green_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette2_blue/Palette2_blue" to="DebugControls" method="_on_palette_2_blue_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/RayMod_x/raymod_x" to="DebugControls" method="_on_raymod_x_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/RayMod_y/raymod_y" to="DebugControls" method="_on_raymod_y_drag_ended"]
+[connection signal="drag_ended" from="DebugControls/HBoxContainer/RayMod_z/raymod_z" to="DebugControls" method="_on_raymod_z_drag_ended"]
