@@ -48,11 +48,11 @@ vec3 palette(float n) {
 
 
 vec4 plane(vec2 pixelCoord, float fft) {
-    if (fft <= 0.0)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    // if (fft <= 0.0)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0, 0.0, 0.0, 1.0);
+    // }
 
     vec4 colorOutput = vec4(0.0);
     vec2 tex_uv = pixelCoord;
@@ -105,13 +105,13 @@ void fragment() {
     finalColor.xyz *= finalColorMod;
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
-    {
-        float fadeDuration = songDuration - songFadeOutStart;
-        float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress; // Fade out the color
-        finalColor.w = 1.0;
-    }
+    // if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    // {
+    //     float fadeDuration = songDuration - songFadeOutStart;
+    //     float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress; // Fade out the color
+    //     finalColor.w = 1.0;
+    // }
     vec4 background = vec4(0.0, 0.0, 0.0, 0.1);
     background.xyz = palette(fft);
     finalColor.xyz -= fft *0.1;

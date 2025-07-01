@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_oka0o"]
 [ext_resource type="AudioStream" uid="uid://bpoj5wofb7e81" path="res://audio/rad148bpm.wav" id="2_nuy8d"]
 [ext_resource type="Shader" uid="uid://bv15a3vosq7kb" path="res://shaders/rad148bpm.gdshader" id="3_unn3b"]
-[ext_resource type="VideoStream" uid="uid://detsrolps6fmv" path="res://video/MOVI0028.ogv" id="5_unn3b"]
+[ext_resource type="VideoStream" uid="uid://detsrolps6fmv" path="res://video/rad148.ogv" id="5_unn3b"]
 [ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="8_st0kn"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_unn3b"]

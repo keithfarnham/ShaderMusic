@@ -2,7 +2,7 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 100
+const VU_COUNT = 20
 const FREQ_MAX = 10000.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
@@ -10,10 +10,14 @@ const HEIGHT_SCALE = 100.0
 
 @onready var sprite = $shader_sprite
 @onready var audioStream = $AudioStreamPlayer
-
+@onready var viewport = $SubViewport
 var spectrum
 var min_values = []
 var max_values = []
+var prevFrame : ImageTexture
+var prevFrame2 : ImageTexture
+var framesToSkip := 60
+var framesWaited := 0
 
 func _ready():
 	if AudioServer.get_bus_effect_count(0) > 0:
@@ -47,7 +51,17 @@ func _process(delta):
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	sprite.get_material().set_shader_parameter("freq_data", fft)
- 
+
+	var image = viewport.get_texture().get_image()
+	var image_texture = ImageTexture.create_from_image(image)
+	prevFrame2  = prevFrame
+	prevFrame = image_texture
+	framesWaited += 1
+	if prevFrame != null and framesWaited >= framesToSkip:
+		sprite.get_material().set_shader_parameter("prevFrame", prevFrame)
+		sprite.get_material().set_shader_parameter("prevFrame2", prevFrame2)
+		framesWaited = 0
+	sprite.get_material().set_shader_parameter("framesWaited", framesWaited)
 
 func _on_audio_start_timer_timeout():
 	audioStream.play()
