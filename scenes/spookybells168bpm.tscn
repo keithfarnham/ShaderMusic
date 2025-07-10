@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3y1dtycdj6y2"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_fcf7t"]
+[ext_resource type="Script" uid="uid://73xsdtm26gmk" path="res://script/main_spookybells.gd" id="1_fcf7t"]
 [ext_resource type="AudioStream" uid="uid://bww7pcyarrvl4" path="res://audio/spookybellsandbass168bpm.wav" id="2_e5r8t"]
 [ext_resource type="Shader" uid="uid://2dhtwxdf8cp0" path="res://shaders/spookybells168bpm.gdshader" id="3_fcf7t"]
 [ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_ruqua"]
@@ -230,7 +230,9 @@ max_value = 2.0
 step = 0.01
 
 [node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
 size = Vector2i(1920, 1080)
+render_target_update_mode = 4
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport"]
 anchors_preset = 15

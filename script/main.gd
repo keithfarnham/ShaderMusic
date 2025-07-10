@@ -2,7 +2,7 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 20
+const VU_COUNT = 100 #match up this value with whatever VU_COUNT is in the shader
 const FREQ_MAX = 10000.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
@@ -55,13 +55,15 @@ func _process(delta):
 	var image = viewport.get_texture().get_image()
 	var image_texture = ImageTexture.create_from_image(image)
 	prevFrame2  = prevFrame
-	prevFrame = image_texture
 	framesWaited += 1
-	if prevFrame != null and framesWaited >= framesToSkip:
+	if framesWaited >= framesToSkip:
+		prevFrame = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
 		sprite.get_material().set_shader_parameter("prevFrame", prevFrame)
 		sprite.get_material().set_shader_parameter("prevFrame2", prevFrame2)
 		framesWaited = 0
 	sprite.get_material().set_shader_parameter("framesWaited", framesWaited)
+	sprite.get_material().set_shader_parameter("video", image_texture)
 
 func _on_audio_start_timer_timeout():
 	audioStream.play()
+	viewport.get_node("VideoStreamPlayer").play()

@@ -187,28 +187,17 @@ vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
         vec3 normal;
         vec2 face_uv;
 
-        if (hit == 1.0) {
-            mat3 rot1 = rotation_y(TIME * 0.5) * rotation_x(TIME);
-            mat3 inv_rot1 = transpose(rot1); // For rotation matrices, the transpose is the inverse
-            vec3 local_hit_box = inv_rot1 * hitPos;
-            normal = estimate_normal_box(local_hit_box);
-            face_uv = box_face_uv(local_hit_box, normal);
-            face_uv.y = 1.0 - face_uv.y;
-            vec3 col1 = texture(tex1, face_uv).rgb;
-            colorOutput.xyz = col1;
-        } else if (hit == 2.0) {
-            mat3 rot2 = rotation_y(TIME * 0.5) * rotation_x(TIME * 0.2);
-            mat3 inv_rot2 = transpose(rot2);
-            vec3 local_hit_hex = inv_rot2 * (hitPos - secondBoxOffset);
-            float s = sin(TIME);
-            normal = estimate_normal_hexprism(local_hit_hex);
-            face_uv = hexprism_face_uv(local_hit_hex, normal, boxSize.xy, boxSize.z);
-            face_uv.y = 1.0 - face_uv.y;
-            vec3 col2 = texture(tex3, face_uv).rgb;
-            col2 = mix(col2, texture(tex3, face_uv).rgb, s);
-            col2 = mix(col2, palette(fft), 0.5);
-            colorOutput.xyz = clamp(col2, 0.0, 0.8);
-        }
+        mat3 rot2 = rotation_y(TIME * 0.5) * rotation_x(TIME * 0.2);
+        mat3 inv_rot2 = transpose(rot2);
+        vec3 local_hit_hex = inv_rot2 * (hitPos - secondBoxOffset);
+        float s = sin(TIME);
+        normal = estimate_normal_hexprism(local_hit_hex);
+        face_uv = hexprism_face_uv(local_hit_hex, normal, boxSize.xy, boxSize.z);
+        face_uv.y = 1.0 - face_uv.y;
+        vec3 col2 = texture(tex3, face_uv).rgb;
+        col2 = mix(col2, texture(tex3, face_uv).rgb, s);
+        col2 = mix(col2, palette(fft), 0.5);
+        colorOutput.xyz = clamp(col2, 0.0, 0.8);
 
         colorOutput.w = edgeAlpha;
     } else {
