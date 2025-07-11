@@ -31,6 +31,7 @@ uniform float[VU_COUNT] freq_data;
 uniform float timeToWait = 1.0;
 uniform float waitStart = 0.0;
 uniform int framesWaited;
+uniform bool previewMode = false;
 uniform sampler2D tex1;
 uniform sampler2D tex2;
 uniform sampler2D tex3;
@@ -162,7 +163,7 @@ vec3 estimate_normal_hexprism(vec3 p) {
 }
 
 vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
-    if (fft <= 0.0)
+    if (fft <= 0.0 && !previewMode)
     {
         // if there's no audio playing return black for color, shader will start up when audio starts
         return vec4(0.0, 0.0, 0.0, 1.0);

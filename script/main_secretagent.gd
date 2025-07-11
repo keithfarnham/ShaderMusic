@@ -10,7 +10,7 @@ const HEIGHT_SCALE = 100.0
 
 @onready var sprite = $shader_sprite
 @onready var audioStream = $AudioStreamPlayer
-@onready var viewport = $SubViewport
+
 var spectrum
 var min_values = []
 var max_values = []
@@ -33,6 +33,10 @@ func _ready():
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	if previewMode:
+		prevVolume = audioStream.volume_linear
+		audioStream.volume_linear = 0.0
 
 func _process(delta):
 	var prev_hz = 0
@@ -55,19 +59,6 @@ func _process(delta):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	sprite.get_material().set_shader_parameter("freq_data", fft)
 	sprite.get_material().set_shader_parameter("previewMode", previewMode)
-
-	var image = viewport.get_texture().get_image()
-	var image_texture = ImageTexture.create_from_image(image)
-	prevFrame2  = prevFrame
-	framesWaited += 1
-	if framesWaited >= framesToSkip:
-		prevFrame = image_texture
-		sprite.get_material().set_shader_parameter("prevFrame", prevFrame)
-		sprite.get_material().set_shader_parameter("prevFrame2", prevFrame2)
-		framesWaited = 0
-	sprite.get_material().set_shader_parameter("framesWaited", framesWaited)
-	sprite.get_material().set_shader_parameter("video", image_texture)
-	
 	if startPlay:
 		#start playing audio a frame after reducing volume for previewMode
 		audioStream.play()
@@ -78,14 +69,12 @@ func _on_audio_start_timer_timeout():
 		prevVolume = audioStream.volume_linear
 		audioStream.volume_linear = 0.0
 		startPlay = true
-	else:
+	else: 
 		audioStream.play()
-		viewport.get_node("VideoStreamPlayer").play()
 
-
-func _on_spookybells_focus_entered():
+func _on_secretagent_focus_entered():
 	audioStream.volume_linear = prevVolume
 
 
-func _on_spookybells_focus_exited():
+func _on_secretagent_focus_exited():
 	audioStream.volume_linear = 0.0

@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://c64qfjla8g1gs"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_1o5tn"]
-[ext_resource type="Shader" uid="uid://ducbcqjtnybpe" path="res://shaders/dunban.gdshader" id="2_4gwn4"]
-[ext_resource type="Texture2D" uid="uid://cn1fibyo7vvcb" path="res://textures/Dunban_nosword.png" id="4_4gwn4"]
-[ext_resource type="AudioStream" uid="uid://dngm0yd1j3urh" path="res://audio/dunban.wav" id="4_edb46"]
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_ccjvg"]
+[ext_resource type="AudioStream" uid="uid://dngm0yd1j3urh" path="res://audio/dunban.wav" id="2_7v447"]
+[ext_resource type="Shader" uid="uid://ducbcqjtnybpe" path="res://shaders/dunban.gdshader" id="3_tvexv"]
+[ext_resource type="Texture2D" uid="uid://cn1fibyo7vvcb" path="res://textures/Dunban_nosword.png" id="4_7kb3i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
-shader = ExtResource("2_4gwn4")
+shader = ExtResource("3_tvexv")
 shader_parameter/planeDist = 2.11
 shader_parameter/furthest = 26.955
 shader_parameter/fadeFrom = 14.29
@@ -25,15 +25,15 @@ shader_parameter/pathB = Vector2(0.05, 0.05)
 shader_parameter/paletteColor1 = Vector3(0.055, 0.18, 0.05)
 shader_parameter/paletteColor2 = Vector3(0, 0, 0)
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/iChannel1 = ExtResource("4_4gwn4")
+shader_parameter/iChannel1 = ExtResource("4_7kb3i")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4gwn4"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_1o5tn")
+script = ExtResource("1_ccjvg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_edb46")
+stream = ExtResource("2_7v447")
 
 [node name="Title" type="RichTextLabel" parent="."]
 z_index = 1

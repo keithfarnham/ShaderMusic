@@ -1,28 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8k0awup731s0"]
+[gd_scene load_steps=6 format=3 uid="uid://dd7kotp8gikuj"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_2nh3k"]
-[ext_resource type="Shader" uid="uid://bduiutug4e0it" path="res://shaders/spacesims3.gdshader" id="2_2nh3k"]
-[ext_resource type="AudioStream" uid="uid://cq0rqryvr34rx" path="res://audio/spacesims3.wav" id="3_2nh3k"]
+[ext_resource type="Script" uid="uid://csq51c1scnudi" path="res://script/main_driftintothesun.gd" id="1_km22q"]
+[ext_resource type="Shader" uid="uid://dhrvoxkivt64b" path="res://shaders/driftintothesun.gdshader" id="2_6de1m"]
+[ext_resource type="AudioStream" uid="uid://dqrqfwqwe7wdk" path="res://audio/spacesims1.wav" id="3_gr1mn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
-shader = ExtResource("2_2nh3k")
-shader_parameter/planeDist = 0.5
+shader = ExtResource("2_6de1m")
+shader_parameter/planeDist = 10.0
 shader_parameter/furthest = 16.0
-shader_parameter/fadeFrom = 8.0
-shader_parameter/circleRadius = 0.1
+shader_parameter/fadeFrom = 15.93
+shader_parameter/circleRadius = 1.0
 shader_parameter/antiAliasBaseValue = 3.0
-shader_parameter/slowVal = 2.0
 shader_parameter/pixelCoords_X_mod = 0.0
 shader_parameter/pixelCoords_Y_mod = 0.0
-shader_parameter/pathA_X = 0.0
-shader_parameter/pathA_Y = 0.0
-shader_parameter/useUV = true
-shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/previewMode = false
+shader_parameter/freq_data = PackedFloat32Array(0)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_2nh3k")
+script = ExtResource("1_km22q")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2c62f")
@@ -31,18 +28,19 @@ scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_2nh3k")
+stream = ExtResource("3_gr1mn")
 
 [node name="Title" type="RichTextLabel" parent="."]
-offset_left = 64.0
-offset_right = 689.0
-offset_bottom = 68.0
+offset_left = 35.0
+offset_top = 1.0
+offset_right = 757.0
+offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "uhdude - SIMULATED SPACE"
+text = "DRIFT INTO THE SUN"
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0

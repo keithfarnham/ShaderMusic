@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://8353t8cnm8kd"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_sslkv"]
-[ext_resource type="Shader" uid="uid://b14m8kwe0lac0" path="res://shaders/sosuperxtreme.gdshader" id="2_5ds0n"]
-[ext_resource type="AudioStream" uid="uid://be5jx22tvxco8" path="res://audio/seriouslysuperxtreme.wav" id="3_uwpit"]
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_08tya"]
+[ext_resource type="Shader" uid="uid://b14m8kwe0lac0" path="res://shaders/sosuperxtreme.gdshader" id="2_852ia"]
+[ext_resource type="AudioStream" uid="uid://be5jx22tvxco8" path="res://audio/seriouslysuperxtreme.wav" id="3_i8bon"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
-shader = ExtResource("2_5ds0n")
+shader = ExtResource("2_852ia")
 shader_parameter/planeDist = 1.0
 shader_parameter/furthest = 16.0
 shader_parameter/fadeFrom = 0.405
@@ -28,7 +28,7 @@ shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_sslkv")
+script = ExtResource("1_08tya")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2c62f")
@@ -37,7 +37,7 @@ scale = Vector2(3840, 2160)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_uwpit")
+stream = ExtResource("3_i8bon")
 
 [node name="Title" type="RichTextLabel" parent="."]
 offset_left = 64.0

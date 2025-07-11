@@ -32,6 +32,7 @@ uniform int framesWaited;
 uniform sampler2D prevFrame;
 uniform sampler2D prevFrame2;
 uniform sampler2D video;
+uniform bool previewMode = false;
 
 const vec4 UP_VECTOR = vec4(0.0, 1.0, 2.0, 3.0);
 const float songDuration = 114.0; //108sec song duration + 6sec delay
@@ -78,8 +79,8 @@ mat3 rotation_y(float angle) {
     float c = cos(angle);
     float s = sin(angle);
     return mat3(
-        vec3(c, 0.0, -s), 
-        vec3(0.0, 1.0, 0.0), 
+        vec3(c, 0.0, -s),
+        vec3(0.0, 1.0, 0.0),
         vec3(s, 0.0, c)
     );
 }
@@ -88,8 +89,8 @@ mat3 rotation_x(float angle) {
     float c = cos(angle);
     float s = sin(angle);
     return mat3(
-        vec3(1.0, 0.0, 0.0), 
-        vec3(0.0, c, -s), 
+        vec3(1.0, 0.0, 0.0),
+        vec3(0.0, c, -s),
         vec3(0.0, s, c)
     );
 }
@@ -132,7 +133,7 @@ vec4 raymarch(vec3 rayOrigin, vec3 rayDir, float maxDist, int maxSteps, float ro
 
 
 vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
-    if (fft <= 0.0)
+    if (fft <= 0.0 && !previewMode)
     {
         // if there's no audio playing return black for color, shader will start up when audio starts
         return vec4(0.0, 0.0, 0.0, 1.0);

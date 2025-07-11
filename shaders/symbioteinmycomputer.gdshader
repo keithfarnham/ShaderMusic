@@ -24,6 +24,7 @@ uniform vec3 paletteColor2 = vec3(0.0);
 uniform vec3 outsideColor1 = vec3(0.5);
 uniform vec3 outsideColor2 = vec3(0.5);
 uniform bool useUV = false;
+uniform bool previewMode = false;
 const int VU_COUNT = 10;
 uniform float[VU_COUNT] freq_data;
 
@@ -71,7 +72,7 @@ float sdParabola( in vec2 pos, in float k )
 }
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec3 centralPlanePosition, vec3 offsetPosition, float planeIndex, vec2 uv, float fft) {
-    if (fft <= 0.0)
+    if (fft <= 0.0 && !previewMode)
     {
         // if there's no audio playing return black for color, shader will start up when audio starts
         return vec4(0.0);

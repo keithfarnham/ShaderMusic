@@ -1,59 +1,50 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0gwyt7bty4da"]
+[gd_scene load_steps=11 format=3 uid="uid://dhp3f04plvsef"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_lvke5"]
-[ext_resource type="AudioStream" uid="uid://bu356xvq6gm5o" path="res://audio/ok110bpm_mix2.wav" id="2_83rdv"]
-[ext_resource type="Shader" uid="uid://pnihyayybkxc" path="res://shaders/ok110bpm.gdshader" id="3_83rdv"]
-[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_ci1tv"]
-[ext_resource type="Texture2D" uid="uid://d2p4dstr3ycub" path="res://textures/ok110bpm/PICT0038.jpg" id="4_wwcw1"]
-[ext_resource type="Texture2D" uid="uid://cddcvk6lby5oc" path="res://textures/ok110bpm/PICT0039.jpg" id="5_v8mjq"]
-[ext_resource type="Texture2D" uid="uid://bir31jeomxcr1" path="res://textures/ok110bpm/PICT0044.jpg" id="6_nx85t"]
-[ext_resource type="Texture2D" uid="uid://cccsbptun2gpu" path="res://textures/ok110bpm/PICT0045.jpg" id="7_eeq4l"]
-[ext_resource type="Texture2D" uid="uid://c8wmc0kchey2p" path="res://textures/ok110bpm/PICT0046.jpg" id="8_w887e"]
+[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_5poic"]
+[ext_resource type="AudioStream" uid="uid://c52i31dt4tteh" path="res://audio/151bpmsong.wav" id="2_5poic"]
+[ext_resource type="Shader" uid="uid://cxlev3ua1r48g" path="res://shaders/151bpmsong.gdshader" id="3_5poic"]
+[ext_resource type="Texture2D" uid="uid://c37oola41lbqx" path="res://textures/PICT0012.jpg" id="4_okwqe"]
+[ext_resource type="Texture2D" uid="uid://b7j76p2wjftkp" path="res://textures/PICT0024.jpg" id="5_okwqe"]
+[ext_resource type="Texture2D" uid="uid://bdwtxldwqhwhe" path="res://textures/PICT0011.jpg" id="6_cegkj"]
+[ext_resource type="Texture2D" uid="uid://6es0l7qqra6l" path="res://textures/PICT0114.jpg" id="7_7o4be"]
+[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="8_7o4be"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
-resource_local_to_scene = true
-shader = ExtResource("3_83rdv")
-shader_parameter/planeDist = 20.0
-shader_parameter/furthest = 1.0
+shader = ExtResource("3_5poic")
+shader_parameter/planeDist = 5.0
+shader_parameter/furthest = 10.0
 shader_parameter/fadeFrom = 8.0
-shader_parameter/fadeOutMod = 0.0
+shader_parameter/fadeOutMod = -0.54
 shader_parameter/shapeRadius = 0.5
-shader_parameter/finalAlphaReduction = -0.745
 shader_parameter/antiAliasBaseValue = 3.0
-shader_parameter/slowVal = 2.0
-shader_parameter/rayDepth = 1.75
-shader_parameter/maxDistance = 30.0
-shader_parameter/rayDirMod = Vector3(0.175, 0.28, 0.095)
-shader_parameter/rayOriginMod = Vector3(-0.795, -0.28, -1.76)
+shader_parameter/slowVal = 4.0
+shader_parameter/rayDepth = 15.0
+shader_parameter/rayDirMod = Vector3(0.53, -0.36, -0.11)
+shader_parameter/rayOriginMod = Vector3(1.15, 0, 0)
 shader_parameter/planeZMod = 0.0
-shader_parameter/zoomValue = 1.0
+shader_parameter/zoomValue = 3.69
 shader_parameter/finalColorMod = 1.5
-shader_parameter/pixelCoords_mod = Vector2(0, 0)
-shader_parameter/boxRoundness = 20.0
-shader_parameter/boxSize = Vector3(0.5, 0.5, 0.2)
-shader_parameter/secondBoxOffset = Vector3(0.03, -0.135, 0.365)
-shader_parameter/pathA = Vector2(0.245, 0.195)
-shader_parameter/pathB = Vector2(0.185, 0.2)
-shader_parameter/paletteColor1 = Vector3(1, 0, 1.74)
-shader_parameter/paletteColor2 = Vector3(1, 0.2, 1)
-shader_parameter/backgroundColor = Vector3(0, 0, 0)
+shader_parameter/pixelCoords_mod = Vector2(0.2, 1.43)
+shader_parameter/pathA = Vector2(0, 0.4)
+shader_parameter/pathB = Vector2(0, 0.455)
+shader_parameter/paletteColor1 = Vector3(0.08, 0.35, 0.405)
+shader_parameter/paletteColor2 = Vector3(0.4, 0.845, 0.7)
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/timeToWait = 1.0
-shader_parameter/waitStart = 0.0
-shader_parameter/framesWaited = 0
-shader_parameter/tex1 = ExtResource("4_wwcw1")
-shader_parameter/tex2 = ExtResource("5_v8mjq")
-shader_parameter/tex3 = ExtResource("6_nx85t")
-shader_parameter/tex4 = ExtResource("7_eeq4l")
-shader_parameter/tex5 = ExtResource("8_w887e")
+shader_parameter/texture1 = ExtResource("4_okwqe")
+shader_parameter/texture2 = ExtResource("5_okwqe")
+shader_parameter/texture3 = ExtResource("6_cegkj")
+shader_parameter/texture4 = ExtResource("7_7o4be")
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxgvd"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4gwn4"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_lvke5")
+script = ExtResource("1_5poic")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5poic")
 
 [node name="Title" type="RichTextLabel" parent="."]
-z_index = 2
+z_index = 1
 offset_left = 64.0
 offset_right = 856.0
 offset_bottom = 115.0
@@ -62,22 +53,29 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "uhdude - OK 110 BPM"
+text = "uhdude - 151 BPM SONG"
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_83rdv")
-
 [node name="shader_sprite" type="Sprite2D" parent="."]
-z_index = 1
 material = SubResource("ShaderMaterial_2c62f")
 position = Vector2(960, 540)
 scale = Vector2(1920, 1080)
-texture = SubResource("PlaceholderTexture2D_dxgvd")
+texture = SubResource("PlaceholderTexture2D_4gwn4")
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+offset_left = 1439.0
+offset_right = 1797.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Debug Controls"
+metadata/_edit_use_anchors_ = true
 
 [node name="DebugControls" type="Control" parent="."]
 visible = false
@@ -88,19 +86,7 @@ offset_left = 1394.0
 offset_top = 85.0
 offset_right = 1917.0
 offset_bottom = 488.0
-script = ExtResource("4_ci1tv")
-
-[node name="DebugLabel" type="Label" parent="DebugControls"]
-layout_mode = 0
-offset_left = 45.0
-offset_top = -85.0
-offset_right = 403.0
-offset_bottom = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "Debug Controls"
-metadata/_edit_use_anchors_ = true
+script = ExtResource("8_7o4be")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="DebugControls"]
 layout_mode = 2
@@ -235,22 +221,6 @@ text = "Ray Modifier Z"
 layout_mode = 2
 max_value = 2.0
 step = 0.01
-
-[node name="SubViewport" type="SubViewport" parent="."]
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-volume_db = -80.0
-autoplay = true
-expand = true
-loop = true
 
 [connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
 [connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_red/Palette1_red" to="DebugControls" method="_on_palette_1_red_drag_ended"]

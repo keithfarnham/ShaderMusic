@@ -1,61 +1,70 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3y1dtycdj6y2"]
+[gd_scene load_steps=12 format=3 uid="uid://b0gwyt7bty4da"]
 
-[ext_resource type="Script" uid="uid://73xsdtm26gmk" path="res://script/main_spookybells.gd" id="1_fcf7t"]
-[ext_resource type="AudioStream" uid="uid://bww7pcyarrvl4" path="res://audio/spookybellsandbass168bpm.wav" id="2_e5r8t"]
-[ext_resource type="Shader" uid="uid://2dhtwxdf8cp0" path="res://shaders/spookybells168bpm.gdshader" id="3_fcf7t"]
-[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_ruqua"]
-[ext_resource type="VideoStream" uid="uid://wbqctadfn434" path="res://video/spookybells.ogv" id="5_jdadl"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_unn3b"]
-viewport_path = NodePath("SubViewport")
+[ext_resource type="Script" uid="uid://da5ynm2unqtrs" path="res://script/main_ok110bpm.gd" id="1_hddfx"]
+[ext_resource type="AudioStream" uid="uid://bu356xvq6gm5o" path="res://audio/ok110bpm_mix2.wav" id="2_xih00"]
+[ext_resource type="Shader" uid="uid://pnihyayybkxc" path="res://shaders/ok110bpm.gdshader" id="3_5f4sf"]
+[ext_resource type="Texture2D" uid="uid://d2p4dstr3ycub" path="res://textures/ok110bpm/PICT0038.jpg" id="4_5kipl"]
+[ext_resource type="Texture2D" uid="uid://cddcvk6lby5oc" path="res://textures/ok110bpm/PICT0039.jpg" id="5_fhnx8"]
+[ext_resource type="Texture2D" uid="uid://bir31jeomxcr1" path="res://textures/ok110bpm/PICT0044.jpg" id="6_2nqpt"]
+[ext_resource type="Texture2D" uid="uid://cccsbptun2gpu" path="res://textures/ok110bpm/PICT0045.jpg" id="7_vtkdu"]
+[ext_resource type="Texture2D" uid="uid://c8wmc0kchey2p" path="res://textures/ok110bpm/PICT0046.jpg" id="8_pc13b"]
+[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="9_y0r1t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
 resource_local_to_scene = true
-shader = ExtResource("3_fcf7t")
+shader = ExtResource("3_5f4sf")
 shader_parameter/planeDist = 20.0
 shader_parameter/furthest = 1.0
 shader_parameter/fadeFrom = 8.0
 shader_parameter/fadeOutMod = 0.0
 shader_parameter/shapeRadius = 0.5
-shader_parameter/finalAlphaReduction = 0.0
+shader_parameter/finalAlphaReduction = -0.745
 shader_parameter/antiAliasBaseValue = 3.0
 shader_parameter/slowVal = 2.0
 shader_parameter/rayDepth = 1.75
 shader_parameter/maxDistance = 30.0
 shader_parameter/rayDirMod = Vector3(0.175, 0.28, 0.095)
-shader_parameter/rayOriginMod = Vector3(-1.135, -0.175, -2.645)
+shader_parameter/rayOriginMod = Vector3(-0.795, -0.28, -1.76)
 shader_parameter/planeZMod = 0.0
 shader_parameter/zoomValue = 1.0
 shader_parameter/finalColorMod = 1.5
 shader_parameter/pixelCoords_mod = Vector2(0, 0)
-shader_parameter/boxRoundness = 30.0
+shader_parameter/boxRoundness = 20.0
 shader_parameter/boxSize = Vector3(0.5, 0.5, 0.2)
-shader_parameter/secondBoxOffset = Vector3(-0.08, -0.105, -0.45)
-shader_parameter/pathA = Vector2(0.2, 0.2)
-shader_parameter/pathB = Vector2(0.2, 0.2)
-shader_parameter/paletteColor1 = Vector3(1, 0, 0)
-shader_parameter/paletteColor2 = Vector3(0, 0, 1)
+shader_parameter/secondBoxOffset = Vector3(0.03, -0.135, 0.365)
+shader_parameter/pathA = Vector2(0.245, 0.195)
+shader_parameter/pathB = Vector2(0.185, 0.2)
+shader_parameter/paletteColor1 = Vector3(1, 0, 1.74)
+shader_parameter/paletteColor2 = Vector3(1, 0.2, 1)
 shader_parameter/backgroundColor = Vector3(0, 0, 0)
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/timeToWait = 1.0
+shader_parameter/waitStart = 0.0
 shader_parameter/framesWaited = 0
-shader_parameter/video = SubResource("ViewportTexture_unn3b")
+shader_parameter/previewMode = false
+shader_parameter/tex1 = ExtResource("4_5kipl")
+shader_parameter/tex2 = ExtResource("5_fhnx8")
+shader_parameter/tex3 = ExtResource("6_2nqpt")
+shader_parameter/tex4 = ExtResource("7_vtkdu")
+shader_parameter/tex5 = ExtResource("8_pc13b")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxgvd"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_fcf7t")
+script = ExtResource("1_hddfx")
 
 [node name="Title" type="RichTextLabel" parent="."]
 z_index = 2
-offset_left = 64.0
-offset_right = 856.0
-offset_bottom = 115.0
+offset_left = 35.0
+offset_top = 1.0
+offset_right = 757.0
+offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "uhdude - SPOOKY BELLS 168 BPM"
+text = "OK 110 BPM"
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -63,7 +72,7 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_e5r8t")
+stream = ExtResource("2_xih00")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -81,7 +90,7 @@ offset_left = 1394.0
 offset_top = 85.0
 offset_right = 1917.0
 offset_bottom = 488.0
-script = ExtResource("4_ruqua")
+script = ExtResource("9_y0r1t")
 
 [node name="DebugLabel" type="Label" parent="DebugControls"]
 layout_mode = 0
@@ -240,7 +249,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("5_jdadl")
 volume_db = -80.0
 autoplay = true
 expand = true

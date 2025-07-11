@@ -1,63 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://di3aiiuqoxme0"]
+[gd_scene load_steps=8 format=3 uid="uid://ch62adtgahhjb"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_oka0o"]
-[ext_resource type="AudioStream" uid="uid://bpoj5wofb7e81" path="res://audio/rad148bpm.wav" id="2_nuy8d"]
-[ext_resource type="Shader" uid="uid://bv15a3vosq7kb" path="res://shaders/rad148bpm.gdshader" id="3_unn3b"]
-[ext_resource type="VideoStream" uid="uid://detsrolps6fmv" path="res://video/rad148.ogv" id="5_unn3b"]
-[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="8_st0kn"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_unn3b"]
-viewport_path = NodePath("SubViewport")
+[ext_resource type="Script" uid="uid://bycje4kq1irup" path="res://script/main_foginthetv.gd" id="1_14gp8"]
+[ext_resource type="AudioStream" uid="uid://cbp6250gdgjcq" path="res://audio/foginthetv.wav" id="2_8jflo"]
+[ext_resource type="Shader" uid="uid://bu6bllwrljak1" path="res://shaders/foginthetv.gdshader" id="3_8qsbc"]
+[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_cvfax"]
+[ext_resource type="VideoStream" uid="uid://d3tcfvgcv0wh2" path="res://video/foginthetv.ogv" id="5_jkeh7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
 resource_local_to_scene = true
-shader = ExtResource("3_unn3b")
-shader_parameter/planeDist = 0.5
-shader_parameter/furthest = 16.0
+shader = ExtResource("3_8qsbc")
+shader_parameter/planeDist = 1.0
+shader_parameter/furthest = 1.0
 shader_parameter/fadeFrom = 8.0
 shader_parameter/fadeOutMod = 0.0
 shader_parameter/shapeRadius = 0.5
-shader_parameter/finalAlphaReduction = 0.0
+shader_parameter/finalAlphaReduction = 0.815
 shader_parameter/antiAliasBaseValue = 3.0
 shader_parameter/slowVal = 2.0
-shader_parameter/rayDepth = 1.0
-shader_parameter/rayDirMod = Vector3(0, 0, 0)
-shader_parameter/rayOriginMod = Vector3(0, 0, 0)
+shader_parameter/rayDepth = 1.21
+shader_parameter/maxDistance = 30.0
+shader_parameter/rayDirMod = Vector3(0.175, 0.28, 0.095)
+shader_parameter/rayOriginMod = Vector3(-0.93, -0.02, -1.76)
 shader_parameter/planeZMod = 0.0
 shader_parameter/zoomValue = 1.0
 shader_parameter/finalColorMod = 1.5
 shader_parameter/pixelCoords_mod = Vector2(0, 0)
-shader_parameter/pathA = Vector2(0, 0)
-shader_parameter/pathB = Vector2(0, 0)
-shader_parameter/paletteColor1 = Vector3(0.08, 0.35, 0.405)
-shader_parameter/paletteColor2 = Vector3(0.4, 0.845, 0.7)
+shader_parameter/shapeSize = 0.025
+shader_parameter/secondShapeOffset = Vector3(0, 0, 0)
+shader_parameter/pathA = Vector2(0.245, 0.195)
+shader_parameter/pathB = Vector2(0.185, 0.2)
+shader_parameter/paletteColor1 = Vector3(0, 0, 2.67)
+shader_parameter/paletteColor2 = Vector3(0.175, 0.42, 1)
+shader_parameter/backgroundColor = Vector3(0.045, 0.035, 0.09)
+shader_parameter/amplitude = 1.0
+shader_parameter/freqX = 0.1
+shader_parameter/freqSlow = 10.0
+shader_parameter/freqY = 0.1
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/video = SubResource("ViewportTexture_unn3b")
+shader_parameter/framesWaited = 0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxgvd"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_oka0o")
+script = ExtResource("1_14gp8")
 
 [node name="Title" type="RichTextLabel" parent="."]
-z_index = 1
-offset_left = 64.0
-offset_right = 856.0
-offset_bottom = 115.0
+z_index = 2
+offset_left = 35.0
+offset_top = 1.0
+offset_right = 757.0
+offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "uhdude - RAD 148 BPM"
+text = "FOG IN THE TV"
 
 [node name="AudioStartTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_nuy8d")
+stream = ExtResource("2_8jflo")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -75,7 +81,7 @@ offset_left = 1394.0
 offset_top = 85.0
 offset_right = 1917.0
 offset_bottom = 488.0
-script = ExtResource("8_st0kn")
+script = ExtResource("4_cvfax")
 
 [node name="DebugLabel" type="Label" parent="DebugControls"]
 layout_mode = 0
@@ -234,11 +240,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stream = ExtResource("5_unn3b")
+size_flags_horizontal = 0
+stream = ExtResource("5_jkeh7")
 volume_db = -80.0
-autoplay = true
 expand = true
-loop = true
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
 [connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_red/Palette1_red" to="DebugControls" method="_on_palette_1_red_drag_ended"]

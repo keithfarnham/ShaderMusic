@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu7spjaendgs4"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_mj0e4"]
-[ext_resource type="Shader" uid="uid://f3bj5llvkcrf" path="res://shaders/avoidthevoid.gdshader" id="2_sbkw4"]
-[ext_resource type="AudioStream" uid="uid://bmpc34karas8x" path="res://audio/Avoid the Void.wav" id="3_0aud1"]
+[ext_resource type="Script" uid="uid://dpfxefnd5kqk7" path="res://script/main_avoidthevoid.gd" id="1_ek386"]
+[ext_resource type="Shader" uid="uid://f3bj5llvkcrf" path="res://shaders/avoidthevoid.gdshader" id="2_lbbw2"]
+[ext_resource type="AudioStream" uid="uid://bmpc34karas8x" path="res://audio/Avoid the Void.wav" id="3_swvtb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
-shader = ExtResource("2_sbkw4")
+shader = ExtResource("2_lbbw2")
 shader_parameter/planeDist = 0.1
 shader_parameter/furthest = 30.0
 shader_parameter/fadeFrom = 0.1
@@ -17,12 +17,13 @@ shader_parameter/pixelCoords_Y_mod = -0.27
 shader_parameter/pathA_X = 0.0
 shader_parameter/pathA_Y = 0.41
 shader_parameter/useUV = false
+shader_parameter/previewMode = false
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_mj0e4")
+script = ExtResource("1_ek386")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2c62f")
@@ -31,22 +32,23 @@ scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_0aud1")
-
-[node name="Title" type="RichTextLabel" parent="."]
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 241.0
-offset_bottom = 30.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_offset_x = 3
-bbcode_enabled = true
-text = "uhdude - AVOID THE VOID"
+stream = ExtResource("3_swvtb")
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 35.0
+offset_top = 1.0
+offset_right = 757.0
+offset_bottom = 80.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "AVOID THE VOID"
 
 [connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]

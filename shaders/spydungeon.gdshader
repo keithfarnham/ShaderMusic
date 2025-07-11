@@ -21,6 +21,7 @@ uniform float pathA_Y = 0.0;
 uniform bool useUV = false;
 const int VU_COUNT = 100;
 uniform float[VU_COUNT] freq_data;
+uniform bool previewMode = false;
 
 const vec2 PATH_A = vec2(0.31, 0.41);
 const vec2 PATH_B = vec2(1.0, sqrt(0.5));
@@ -78,7 +79,7 @@ vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance
     float bandFrac = fract(band);
     float fft = mix(freq_data[bandIdx], freq_data[min(bandIdx + 1, VU_COUNT - 1)], bandFrac);
 
-    if (fft <= 0.0)
+    if (fft <= 0.0 && !previewMode)
     {
         // if there's no audio playing return black for color, shader will start up when audio starts
         return vec4(0.0);

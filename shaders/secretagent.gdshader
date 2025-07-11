@@ -23,6 +23,7 @@ uniform vec2 pathB = vec2(0.0);
 uniform vec3 paletteColor1 = vec3(0.0);
 uniform vec3 paletteColor2 = vec3(0.0);
 uniform bool useUV = true;
+uniform bool previewMode = false;
 const int VU_COUNT = 20;
 uniform float[VU_COUNT] freq_data;
 
@@ -72,7 +73,7 @@ float sdStar( vec2 p, float r, int n, float m)
 
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec3 centralPlanePosition, vec3 offsetPosition, float planeIndex, float fft) {
-    if (fft <= 0.0)
+    if (fft <= 0.0 && !previewMode)
     {
         // if there's no audio playing return black for color, shader will start up when audio starts
         return vec4(0.0, 0.0, 0.0, 1.0);

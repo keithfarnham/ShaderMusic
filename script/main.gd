@@ -18,6 +18,8 @@ var prevFrame : ImageTexture
 var prevFrame2 : ImageTexture
 var framesToSkip := 60
 var framesWaited := 0
+var prevVolume := 0.0
+@export var previewMode := false
 
 func _ready():
 	if AudioServer.get_bus_effect_count(0) > 0:
@@ -51,7 +53,8 @@ func _process(delta):
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	sprite.get_material().set_shader_parameter("freq_data", fft)
-
+	sprite.get_material().set_shader_parameter("previewMode", previewMode)
+	
 	var image = viewport.get_texture().get_image()
 	var image_texture = ImageTexture.create_from_image(image)
 	prevFrame2  = prevFrame
@@ -63,7 +66,10 @@ func _process(delta):
 		framesWaited = 0
 	sprite.get_material().set_shader_parameter("framesWaited", framesWaited)
 	sprite.get_material().set_shader_parameter("video", image_texture)
+	
 
 func _on_audio_start_timer_timeout():
-	audioStream.play()
+	if previewMode:
+		audioStream.volume_linear = 0.0
 	viewport.get_node("VideoStreamPlayer").play()
+	audioStream.play()

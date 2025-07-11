@@ -10,6 +10,7 @@ uniform float circleRadius = 0.1;
 uniform float antiAliasBaseValue = 3.0;
 uniform float pixelCoords_X_mod = 0.0;
 uniform float pixelCoords_Y_mod = 0.0;
+uniform bool previewMode = false;
 
 const int VU_COUNT = 1;
 uniform float[VU_COUNT] freq_data;
@@ -63,7 +64,7 @@ float sdCircle( vec2 p, float r )
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec3 centralPlanePosition, vec3 offsetPosition, float planeIndex, vec2 uv) {
     float fft = freq_data[int(uv.x * float(VU_COUNT))];
-    if (fft <= 0.0)
+    if (fft <= 0.0 && !previewMode)
     {
         // if there's no audio playing return black for color, shader will start up when audio starts
         return vec4(0.0);

@@ -44,6 +44,13 @@ vec3 ddoffset(float zPos) {
     return vec3(-pathA * pathA * pathB * sin(pathA * zPos), 0.0);
 }
 
+vec4 alphaBlend(vec4 back, vec4 front) {
+    // Based on: https://en.wikipedia.org/wiki/Alpha_compositing
+    float w = front.w + back.w * (1.0 - front.w);
+    vec3 xyz = (front.xyz * front.w + back.xyz * back.w * (1.0 - front.w)) / w;
+    return w > 0.0 ? vec4(xyz, w) : vec4(0.0);
+}
+
 vec3 palette(float n) {
     float t = 0.5 + 0.5 * sin(n);
     return mix(paletteColor1, paletteColor2, t);
