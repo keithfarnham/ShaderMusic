@@ -37,8 +37,11 @@ func _ready():
 	if previewMode:
 		prevVolume = audioStream.volume_linear
 		audioStream.volume_linear = 0.0
+		startPlay = true
 
 func _process(delta):
+	if previewMode:
+		return
 	var prev_hz = 0
 	var data = []
 	for i in range(1, VU_COUNT + 1):
@@ -65,16 +68,13 @@ func _process(delta):
 		startPlay = false
 
 func _on_audio_start_timer_timeout():
-	if previewMode:
-		prevVolume = audioStream.volume_linear
-		audioStream.volume_linear = 0.0
-		startPlay = true
-	else: 
+	if !previewMode:
 		audioStream.play()
 
-func _on_secretagent_focus_entered():
+func _on_secretagent_mouse_entered():
+	previewMode = false
 	audioStream.volume_linear = prevVolume
 
-
-func _on_secretagent_focus_exited():
+func _on_secretagent_mouse_exited():
+	previewMode = true
 	audioStream.volume_linear = 0.0

@@ -10,7 +10,7 @@ const HEIGHT_SCALE = 100.0
 
 @onready var sprite = $shader_sprite
 @onready var audioStream = $AudioStreamPlayer
-
+@onready var viewport = $SubViewport
 var spectrum
 var min_values = []
 var max_values = []
@@ -18,7 +18,8 @@ var prevFrame : ImageTexture
 var prevFrame2 : ImageTexture
 var framesToSkip := 60
 var framesWaited := 0
-var prevVolume = 0.0
+var prevVolume := 0.0
+var startPlay := false
 @export var previewMode := false
 
 func _ready():
@@ -31,9 +32,15 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
+	
+	if previewMode:
+		audioStream.volume_linear = 0.0
+		startPlay = true
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _process(delta):
+	if previewMode:
+		return
 	var prev_hz = 0
 	var data = []
 	for i in range(1, VU_COUNT + 1):
@@ -54,17 +61,36 @@ func _process(delta):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	sprite.get_material().set_shader_parameter("freq_data", fft)
 	sprite.get_material().set_shader_parameter("previewMode", previewMode)
+	
+	var image = viewport.get_texture().get_image()
+	var image_texture = ImageTexture.create_from_image(image)
+	prevFrame2  = prevFrame
+	framesWaited += 1
+	if framesWaited >= framesToSkip:
+		prevFrame = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
+		sprite.get_material().set_shader_parameter("prevFrame", prevFrame)
+		sprite.get_material().set_shader_parameter("prevFrame2", prevFrame2)
+		framesWaited = 0
+	sprite.get_material().set_shader_parameter("framesWaited", framesWaited)
+	sprite.get_material().set_shader_parameter("video", image_texture)
+	if startPlay:
+		#start playing audio a frame after reducing volume for previewMode
+		audioStream.play()
+		viewport.get_node("VideoStreamPlayer").play()
+		startPlay = false
+	
 
 func _on_audio_start_timer_timeout():
-	if previewMode:
-		prevVolume = audioStream.volume_linear
-		audioStream.volume_linear = 0.0
-	audioStream.play()
+	if !previewMode:
+		viewport.get_node("VideoStreamPlayer").play()
+		audioStream.play()
 
 
-func _on_spydungeon_focus_entered():
+func _on_rad_148_bpm_focus_entered():
+	previewMode = false
 	audioStream.volume_linear = prevVolume
 
 
-func _on_spydungeon_focus_exited():
+func _on_rad_148_bpm_focus_exited():
+	previewMode = true
 	audioStream.volume_linear = 0.0

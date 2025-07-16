@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://di3aiiuqoxme0"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_kq5jc"]
+[ext_resource type="Script" uid="uid://ci61fuxb5rob4" path="res://script/main_rad148bpm.gd" id="1_kq5jc"]
 [ext_resource type="AudioStream" uid="uid://bpoj5wofb7e81" path="res://audio/rad148bpm.wav" id="2_x2acq"]
 [ext_resource type="Shader" uid="uid://bv15a3vosq7kb" path="res://shaders/rad148bpm.gdshader" id="3_qvjiu"]
 [ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_qrxbe"]

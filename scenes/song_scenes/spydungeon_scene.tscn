@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ded4don8t8gwt"]
 
-[ext_resource type="Script" uid="uid://oibfn26pkbmf" path="res://script/preViewportMain.gd" id="1_7rc2x"]
+[ext_resource type="Script" uid="uid://doix88aekdcpw" path="res://script/main_spydungeon.gd" id="1_7rc2x"]
 [ext_resource type="Shader" uid="uid://d2v58008pc5xc" path="res://shaders/spydungeon.gdshader" id="2_8fufj"]
 [ext_resource type="AudioStream" uid="uid://ev451tqdhoin" path="res://audio/spydungeon.wav" id="3_6e160"]
 
@@ -32,8 +32,8 @@ script = ExtResource("1_7rc2x")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2c62f")
-position = Vector2(1920, 1080)
-scale = Vector2(3840, 2160)
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

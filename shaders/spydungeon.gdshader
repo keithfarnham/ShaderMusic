@@ -79,11 +79,11 @@ vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance
     float bandFrac = fract(band);
     float fft = mix(freq_data[bandIdx], freq_data[min(bandIdx + 1, VU_COUNT - 1)], bandFrac);
 
-    if (fft <= 0.0 && !previewMode)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0);
-    }
+    // if (fft <= 0.0 && !previewMode)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0);
+    // }
 
     float antiAliasingFactor = (antiAliasBaseValue * planeDistance * distance(planePosition.xy, normalizedPlanePosition.xy));
     vec4 colorOutput = vec4(0.0);

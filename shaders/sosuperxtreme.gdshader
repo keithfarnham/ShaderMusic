@@ -80,11 +80,11 @@ float opOnion( vec2 p, float r )
 
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec3 centralPlanePosition, vec3 offsetPosition, float planeIndex, float fft) {
-    if (fft <= 0.0)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    // if (fft <= 0.0)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0, 0.0, 0.0, 1.0);
+    // }
 
     float antiAliasingFactor = (antiAliasBaseValue * planeDistance * distance(planePosition.xy, normalizedPlanePosition.xy));
     vec4 colorOutput = vec4(0.0);

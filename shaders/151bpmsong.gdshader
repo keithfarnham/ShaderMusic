@@ -27,6 +27,7 @@ uniform sampler2D texture1;
 uniform sampler2D texture2;
 uniform sampler2D texture3;
 uniform sampler2D texture4;
+uniform bool previewMode = false;
 
 const vec4 UP_VECTOR = vec4(0.0, 1.0, 2.0, 3.0);
 const float songDuration = 139.0; //136sec song duration + 3sec delay
@@ -57,11 +58,11 @@ vec3 palette(float n) {
 }
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec2 pixelCoord, vec3 offsetPosition, float planeIndex, float fft) {
-    if (fft <= 0.0)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    // if (!previewMode && fft <= 0.0)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0, 0.0, 0.0, 1.0);
+    // }
 
     float antiAliasingFactor = (antiAliasBaseValue * planeDistance * distance(planePosition.xy, normalizedPlanePosition.xy));
     vec4 colorOutput = vec4(0.0);
@@ -177,7 +178,7 @@ void fragment() {
     finalColor.xyz *= finalColorMod;
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
     {
         float fadeDuration = songDuration - songFadeOutStart;
         float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);

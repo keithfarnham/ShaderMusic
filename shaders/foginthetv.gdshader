@@ -36,6 +36,7 @@ uniform int framesWaited;
 uniform sampler2D prevFrame;
 uniform sampler2D prevFrame2;
 uniform sampler2D video;
+uniform bool previewMode = false;
 
 const vec4 UP_VECTOR = vec4(0.0, 1.0, 2.0, 3.0);
 const float songDuration = 100.0; //94sec song duration + 6sec delay
@@ -199,7 +200,7 @@ vec4 raymarch(vec3 rayOrigin, vec3 rayDir, float maxDist, int maxSteps, float ro
 
 
 vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
-    // if (fft <= 0.0)
+    // if (fft <= 0.0 && !previewMode)
     // {
     //     // if there's no audio playing return black for color, shader will start up when audio starts
     //     return vec4(0.0, 0.0, 0.0, 1.0);
@@ -221,7 +222,7 @@ vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
     vec3 color = vec3(paletteColor1.x + cos(TIME), paletteColor1.y + sin(TIME), paletteColor1.z + sin(TIME * 0.5));
     color = clamp(color, 0.0, 0.2);
 
-    //I'm not displaying the pyramid faces correctly but it does look interesting
+    //I'm not displaying the pyramid faces correctly but it does look interesting, 
 
     vec4 marchResult = raymarch(rayOrigin, rayDir, maxDistance, 32, TIME * 0.5, TIME * 0.2, fft);
     float hit = marchResult.w;

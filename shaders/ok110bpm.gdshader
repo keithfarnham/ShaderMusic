@@ -163,11 +163,11 @@ vec3 estimate_normal_hexprism(vec3 p) {
 }
 
 vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
-    if (fft <= 0.0 && !previewMode)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    // if (fft <= 0.0 && !previewMode)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0, 0.0, 0.0, 1.0);
+    // }
 
     vec4 colorOutput = vec4(0.0);
     vec2 tex_uv = pixelCoord;
@@ -276,7 +276,7 @@ void fragment() {
     finalColor = mix(background, finalColor, finalColor.a - finalAlphaReduction);
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
     {
         float fadeDuration = songDuration - songFadeOutStart;
         float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);

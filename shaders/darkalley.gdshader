@@ -68,11 +68,11 @@ float sdParabola( vec2 pos, float k )
 
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec3 centralPlanePosition, vec3 offsetPosition, float planeIndex, float fft) {
-    if (fft <= 0.0)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    // if (fft <= 0.0)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0, 0.0, 0.0, 1.0);
+    // }
 
     float antiAliasingFactor = (antiAliasBaseValue * planeDistance * distance(planePosition.xy, normalizedPlanePosition.xy));
     vec4 colorOutput = vec4(0.0);
@@ -170,7 +170,7 @@ void fragment() {
     finalColor *= 1.5;
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
     {
         float fadeDuration = songDuration - songFadeOutStart;
         float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);

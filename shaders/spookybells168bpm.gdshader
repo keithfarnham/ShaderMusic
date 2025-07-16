@@ -133,11 +133,11 @@ vec4 raymarch(vec3 rayOrigin, vec3 rayDir, float maxDist, int maxSteps, float ro
 
 
 vec4 plane(vec3 rayOrigin, vec3 rayDir, vec2 pixelCoord, float fft) {
-    if (fft <= 0.0 && !previewMode)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    // if (fft <= 0.0 && !previewMode)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0, 0.0, 0.0, 1.0);
+    // }
 
     vec4 colorOutput = vec4(0.0);
     vec2 tex_uv = pixelCoord;

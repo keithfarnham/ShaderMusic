@@ -64,11 +64,11 @@ float sdCircle( vec2 p, float r )
 
 vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance, vec3 centralPlanePosition, vec3 offsetPosition, float planeIndex, vec2 uv) {
     float fft = freq_data[int(uv.x * float(VU_COUNT))];
-    if (fft <= 0.0 && !previewMode)
-    {
-        // if there's no audio playing return black for color, shader will start up when audio starts
-        return vec4(0.0);
-    }
+    // if (!previewMode && fft <= 0.0)
+    // {
+    //     // if there's no audio playing return black for color, shader will start up when audio starts
+    //     return vec4(0.0);
+    // }
     float timeModulation = 0.5 + 0.5 * sin(TIME); // Oscillates between 0.0 and 1.0 over time
     //modulating the aa with time and fft
     float antiAliasingFactor = fft * timeModulation * (antiAliasBaseValue * planeDistance * distance(planePosition.xy, normalizedPlanePosition.xy));
@@ -171,7 +171,7 @@ void fragment() {
 
     //fade out at the end of the song
     float fadeDuration = songDuration - fadeOutStart;
-    if (TIME >= fadeOutStart)
+    if (!previewMode && TIME >= fadeOutStart)
     {
         float fadeProgress = clamp((TIME - fadeOutStart) / fadeDuration, 0.0, 1.0);
         finalColor *= 1.0 - fadeProgress; // Fade out the color
