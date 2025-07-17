@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://5hkts5q7fscl"
+path="res://.godot/imported/Avoid the Void.ogg-16e62cb9f1c33c62bad9814b849f47de.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Avoid the Void.ogg"
+dest_files=["res://.godot/imported/Avoid the Void.ogg-16e62cb9f1c33c62bad9814b849f47de.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

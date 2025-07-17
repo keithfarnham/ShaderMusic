@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://doix88aekdcpw" path="res://script/main_spydungeon.gd" id="1_7rc2x"]
 [ext_resource type="Shader" uid="uid://d2v58008pc5xc" path="res://shaders/spydungeon.gdshader" id="2_8fufj"]
-[ext_resource type="AudioStream" uid="uid://ev451tqdhoin" path="res://audio/spydungeon.wav" id="3_6e160"]
+[ext_resource type="AudioStream" uid="uid://ddfjfjqjl0m1t" path="res://audio/spydungeon.ogg" id="3_7rc2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
 shader = ExtResource("2_8fufj")
@@ -27,7 +27,7 @@ shader_parameter/previewMode = false
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_7rc2x")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
@@ -37,7 +37,7 @@ scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_6e160")
+stream = ExtResource("3_7rc2x")
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -45,8 +45,7 @@ one_shot = true
 autostart = true
 
 [node name="Title" type="RichTextLabel" parent="."]
-offset_left = 35.0
-offset_top = 1.0
+offset_left = 12.0
 offset_right = 757.0
 offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

@@ -170,12 +170,12 @@ void fragment() {
     finalColor *= 1.5;
 
     //fade out at the end of the song
-    float fadeDuration = songDuration - fadeOutStart;
-    if (!previewMode && TIME >= fadeOutStart)
-    {
-        float fadeProgress = clamp((TIME - fadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress; // Fade out the color
-    }
+    // float fadeDuration = songDuration - fadeOutStart;
+    // if (!previewMode && TIME >= fadeOutStart)
+    // {
+    //     float fadeProgress = clamp((TIME - fadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress; // Fade out the color
+    // }
 
     COLOR = vec4(finalColor, 1.0);
 }

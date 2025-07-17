@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0c8qbb840fje" path="res://script/main_symbiote.gd" id="1_v408q"]
 [ext_resource type="Shader" uid="uid://cmlgag00k2pio" path="res://shaders/symbioteinmycomputer.gdshader" id="2_5ylv5"]
-[ext_resource type="AudioStream" uid="uid://bqa5q2r4ccpg8" path="res://audio/symbioteinmycomputer.wav" id="3_nis1x"]
+[ext_resource type="AudioStream" uid="uid://d1l4f837obdun" path="res://audio/symbioteinmycomputer.ogg" id="3_v408q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
 shader = ExtResource("2_5ylv5")
@@ -42,7 +42,7 @@ scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_nis1x")
+stream = ExtResource("3_v408q")
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -50,8 +50,7 @@ one_shot = true
 autostart = true
 
 [node name="Title" type="RichTextLabel" parent="."]
-offset_left = 35.0
-offset_top = 1.0
+offset_left = 12.0
 offset_right = 757.0
 offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

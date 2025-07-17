@@ -40,7 +40,7 @@ texture = SubResource("PlaceholderTexture2D_gyfs4")
 stream = ExtResource("3_i8bon")
 
 [node name="Title" type="RichTextLabel" parent="."]
-offset_left = 64.0
+offset_left = 12.0
 offset_right = 1379.0
 offset_bottom = 149.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

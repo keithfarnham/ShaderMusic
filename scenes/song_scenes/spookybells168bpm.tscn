@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3y1dtycdj6y2"]
 
 [ext_resource type="Script" uid="uid://73xsdtm26gmk" path="res://script/main_spookybells.gd" id="1_fabfy"]
-[ext_resource type="AudioStream" uid="uid://bww7pcyarrvl4" path="res://audio/spookybellsandbass168bpm.wav" id="2_rrv7h"]
+[ext_resource type="AudioStream" uid="uid://b5xvme0h4v32b" path="res://audio/spookybellsandbass168bpm.ogg" id="2_fabfy"]
 [ext_resource type="Shader" uid="uid://2dhtwxdf8cp0" path="res://shaders/spookybells168bpm.gdshader" id="3_muu1k"]
 [ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_60o1a"]
 [ext_resource type="VideoStream" uid="uid://wbqctadfn434" path="res://video/spookybells.ogv" id="5_25jtm"]
@@ -52,7 +52,7 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_rrv7h")
+stream = ExtResource("2_fabfy")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -237,8 +237,7 @@ loop = true
 
 [node name="Title" type="RichTextLabel" parent="."]
 z_index = 2
-offset_left = 35.0
-offset_top = 1.0
+offset_left = 12.0
 offset_right = 757.0
 offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -246,7 +245,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "SPOOKY BELLS 168 BPM"
+text = "SPOOKY BELLS"
 
 [connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
 [connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_red/Palette1_red" to="DebugControls" method="_on_palette_1_red_drag_ended"]

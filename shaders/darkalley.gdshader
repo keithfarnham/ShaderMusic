@@ -22,6 +22,7 @@ uniform vec3 paletteColor1 = vec3(0.0);
 uniform vec3 paletteColor2 = vec3(0.0);
 const int VU_COUNT = 100;
 uniform float[VU_COUNT] freq_data;
+uniform bool previewMode = false;
 
 const vec4 UP_VECTOR = vec4(0.0, 1.0, 2.0, 3.0);
 const float songDuration = 112.0; //104sec song duration + 3sec delay + 5 sec on frontend

@@ -2,13 +2,16 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 100 #match up this value with whatever VU_COUNT is in the shader
-const FREQ_MAX = 10000.0
+const VU_COUNT = 1 #match up this value with whatever VU_COUNT is in the shader
+const FREQ_MAX = 11050.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
-const HEIGHT_SCALE = 100.0
+const HEIGHT_SCALE = 8.0
+const song = preload("res://audio/spacesims1.ogg")
+const VIDEO_MODE = false
 
 @onready var sprite = $shader_sprite
+@onready var spriteMaterial = $shader_sprite.material
 @onready var audioStream = $AudioStreamPlayer
 
 var spectrum
@@ -19,7 +22,6 @@ var prevFrame2 : ImageTexture
 var framesToSkip := 60
 var framesWaited := 0
 var prevVolume = 0.0
-var startPlay := false
 @export var previewMode := false
 
 func _ready():
@@ -32,12 +34,16 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
-	
+	audioStream.stream = song
+
 	if previewMode:
 		prevVolume = audioStream.volume_linear
 		audioStream.volume_linear = 0.0
-		startPlay = true
+		call_deferred("_start_audio")
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+func _start_audio():
+	audioStream.play()
 
 func _process(delta):
 	if previewMode:
@@ -60,15 +66,11 @@ func _process(delta):
 	var fft = []
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
-	sprite.get_material().set_shader_parameter("freq_data", fft)
-	sprite.get_material().set_shader_parameter("previewMode", previewMode)
-	if startPlay:
-		#start playing audio a frame after reducing volume for previewMode
-		audioStream.play()
-		startPlay = false
+	spriteMaterial.set_shader_parameter("freq_data", fft)
+	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 
 func _on_audio_start_timer_timeout():
-	if !previewMode:
+	if VIDEO_MODE:
 		audioStream.play()
 
 func _on_driftintothesun_mouse_entered():

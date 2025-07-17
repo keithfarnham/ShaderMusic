@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnreju4f6ek62" path="res://script/main_scaryrobotnoise.gd" id="1_282pf"]
 [ext_resource type="Shader" uid="uid://dfd6alftgondi" path="res://shaders/scaryrobotnoise.gdshader" id="2_ei3v5"]
-[ext_resource type="AudioStream" uid="uid://cjfk0liy3oqyq" path="res://audio/bruhmoment.wav" id="3_tjkiy"]
+[ext_resource type="AudioStream" uid="uid://c8ghewrkptfwq" path="res://audio/bruhmoment.ogg" id="3_282pf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
 shader = ExtResource("2_ei3v5")
@@ -23,6 +23,7 @@ shader_parameter/pixelCoords_Y_mod = 0.2
 shader_parameter/pathA = Vector2(0.5, 0.1)
 shader_parameter/pathB = Vector2(0.34, 0.135)
 shader_parameter/useUV = false
+shader_parameter/previewMode = false
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]
@@ -37,7 +38,7 @@ scale = Vector2(3840, 2160)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_tjkiy")
+stream = ExtResource("3_282pf")
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -45,8 +46,7 @@ one_shot = true
 autostart = true
 
 [node name="Title" type="RichTextLabel" parent="."]
-offset_left = 35.0
-offset_top = 1.0
+offset_left = 12.0
 offset_right = 757.0
 offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

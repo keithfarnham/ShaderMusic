@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://di3aiiuqoxme0"]
 
 [ext_resource type="Script" uid="uid://ci61fuxb5rob4" path="res://script/main_rad148bpm.gd" id="1_kq5jc"]
-[ext_resource type="AudioStream" uid="uid://bpoj5wofb7e81" path="res://audio/rad148bpm.wav" id="2_x2acq"]
+[ext_resource type="AudioStream" uid="uid://cehlviass6d4c" path="res://audio/rad148bpm.ogg" id="2_kq5jc"]
 [ext_resource type="Shader" uid="uid://bv15a3vosq7kb" path="res://shaders/rad148bpm.gdshader" id="3_qvjiu"]
 [ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_qrxbe"]
 [ext_resource type="VideoStream" uid="uid://detsrolps6fmv" path="res://video/rad148.ogv" id="5_8tyla"]
@@ -40,16 +40,16 @@ shader_parameter/video = SubResource("ViewportTexture_unn3b")
 script = ExtResource("1_kq5jc")
 
 [node name="Title" type="RichTextLabel" parent="."]
-z_index = 1
-offset_left = 64.0
+z_index = 2
+offset_left = 12.0
 offset_right = 856.0
 offset_bottom = 115.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "uhdude - RAD 148 BPM"
+text = "RAD 148 BPM"
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -57,7 +57,7 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_x2acq")
+stream = ExtResource("2_kq5jc")
 
 [node name="shader_sprite" type="Sprite2D" parent="."]
 z_index = 1

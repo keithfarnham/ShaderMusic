@@ -7,8 +7,11 @@ const FREQ_MAX = 10000.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
 const HEIGHT_SCALE = 100.0
+const song = preload("res://audio/rad148bpm.ogg")
+const VIDEO_MODE = false
 
 @onready var sprite = $shader_sprite
+@onready var spriteMaterial = $shader_sprite.material
 @onready var audioStream = $AudioStreamPlayer
 @onready var viewport = $SubViewport
 var spectrum
@@ -19,7 +22,6 @@ var prevFrame2 : ImageTexture
 var framesToSkip := 60
 var framesWaited := 0
 var prevVolume := 0.0
-var startPlay := false
 @export var previewMode := false
 
 func _ready():
@@ -32,11 +34,17 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
-	
+	audioStream.stream = song
+
 	if previewMode:
+		prevVolume = audioStream.volume_linear
 		audioStream.volume_linear = 0.0
-		startPlay = true
+		call_deferred("_start_audio")
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+func _start_audio():
+	audioStream.play()
+	viewport.get_node("VideoStreamPlayer").play()
 
 func _process(delta):
 	if previewMode:
@@ -59,8 +67,8 @@ func _process(delta):
 	var fft = []
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
-	sprite.get_material().set_shader_parameter("freq_data", fft)
-	sprite.get_material().set_shader_parameter("previewMode", previewMode)
+	sprite.material.set_shader_parameter("freq_data", fft)
+	sprite.material.set_shader_parameter("previewMode", previewMode)
 	
 	var image = viewport.get_texture().get_image()
 	var image_texture = ImageTexture.create_from_image(image)
@@ -68,29 +76,23 @@ func _process(delta):
 	framesWaited += 1
 	if framesWaited >= framesToSkip:
 		prevFrame = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
-		sprite.get_material().set_shader_parameter("prevFrame", prevFrame)
-		sprite.get_material().set_shader_parameter("prevFrame2", prevFrame2)
+		sprite.material.set_shader_parameter("prevFrame", prevFrame)
+		sprite.material.set_shader_parameter("prevFrame2", prevFrame2)
 		framesWaited = 0
-	sprite.get_material().set_shader_parameter("framesWaited", framesWaited)
-	sprite.get_material().set_shader_parameter("video", image_texture)
-	if startPlay:
-		#start playing audio a frame after reducing volume for previewMode
-		audioStream.play()
-		viewport.get_node("VideoStreamPlayer").play()
-		startPlay = false
-	
+	print("OUTPUT: RAD148 SETTING SHADER PARAMS")
+	sprite.material.set_shader_parameter("framesWaited", framesWaited)
+	sprite.material.set_shader_parameter("video", image_texture)
 
 func _on_audio_start_timer_timeout():
-	if !previewMode:
+	if VIDEO_MODE:
 		viewport.get_node("VideoStreamPlayer").play()
 		audioStream.play()
 
-
-func _on_rad_148_bpm_focus_entered():
+func _on_rad_148_bpm_mouse_entered():
 	previewMode = false
 	audioStream.volume_linear = prevVolume
+	print("OUTPUT: RAD148 PREVIEW MODE DISABLED")
 
-
-func _on_rad_148_bpm_focus_exited():
+func _on_rad_148_bpm_mouse_exited():
 	previewMode = true
 	audioStream.volume_linear = 0.0

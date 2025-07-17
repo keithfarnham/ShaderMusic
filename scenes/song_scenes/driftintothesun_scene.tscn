@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csq51c1scnudi" path="res://script/main_driftintothesun.gd" id="1_km22q"]
 [ext_resource type="Shader" uid="uid://dhrvoxkivt64b" path="res://shaders/driftintothesun.gdshader" id="2_6de1m"]
-[ext_resource type="AudioStream" uid="uid://dqrqfwqwe7wdk" path="res://audio/spacesims1.wav" id="3_gr1mn"]
+[ext_resource type="AudioStream" uid="uid://d0ywoxn3trfy8" path="res://audio/spacesims1.ogg" id="3_km22q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
 shader = ExtResource("2_6de1m")
@@ -28,11 +28,10 @@ scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_gr1mn")
+stream = ExtResource("3_km22q")
 
 [node name="Title" type="RichTextLabel" parent="."]
-offset_left = 35.0
-offset_top = 1.0
+offset_left = 12.0
 offset_right = 757.0
 offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhp3f04plvsef"]
 
-[ext_resource type="Script" uid="uid://c2c5uaxcup5rh" path="res://script/main.gd" id="1_5poic"]
-[ext_resource type="AudioStream" uid="uid://c52i31dt4tteh" path="res://audio/151bpmsong.wav" id="2_5poic"]
+[ext_resource type="Script" uid="uid://cetxw74l1nrep" path="res://script/main_151bpmsong.gd" id="1_xsr27"]
+[ext_resource type="AudioStream" uid="uid://b1bxu4xivemkh" path="res://audio/151bpmsong.ogg" id="2_xsr27"]
 [ext_resource type="Shader" uid="uid://cxlev3ua1r48g" path="res://shaders/151bpmsong.gdshader" id="3_5poic"]
 [ext_resource type="Texture2D" uid="uid://c37oola41lbqx" path="res://textures/PICT0012.jpg" id="4_okwqe"]
 [ext_resource type="Texture2D" uid="uid://b7j76p2wjftkp" path="res://textures/PICT0024.jpg" id="5_okwqe"]
@@ -39,22 +39,10 @@ shader_parameter/previewMode = false
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4gwn4"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_5poic")
+script = ExtResource("1_xsr27")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_5poic")
-
-[node name="Title" type="RichTextLabel" parent="."]
-z_index = 1
-offset_left = 64.0
-offset_right = 856.0
-offset_bottom = 115.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "uhdude - 151 BPM SONG"
+stream = ExtResource("2_xsr27")
 
 [node name="AudioStartTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -222,6 +210,17 @@ text = "Ray Modifier Z"
 layout_mode = 2
 max_value = 2.0
 step = 0.01
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 12.0
+offset_right = 737.0
+offset_bottom = 79.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "151 BPM SONG"
 
 [connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
 [connection signal="drag_ended" from="DebugControls/HBoxContainer/Palette1_red/Palette1_red" to="DebugControls" method="_on_palette_1_red_drag_ended"]
