@@ -46,13 +46,14 @@ autostart = true
 
 [node name="Title" type="RichTextLabel" parent="."]
 offset_left = 12.0
-offset_right = 757.0
-offset_bottom = 80.0
+offset_right = 286.0
+offset_bottom = 48.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_offset_x = 3
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "SPY DUNGEON"
+scroll_active = false
 
 [connection signal="timeout" from="AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
