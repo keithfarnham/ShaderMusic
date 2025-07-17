@@ -1,13 +1,11 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://cxwxhao7ixvdr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_cjfk0"]
-content_margin_right = 24.0
 color = Color(0.12549, 0.12549, 0.12549, 1)
-thickness = 21
+thickness = 24
 vertical = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_vj6dk"]
-content_margin_right = 24.0
 color = Color(0.12549, 0.12549, 0.12549, 1)
 thickness = 24
 vertical = true

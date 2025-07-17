@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://o06dhycxveqi"]
+[gd_scene load_steps=31 format=3 uid="uid://o06dhycxveqi"]
 
 [ext_resource type="Script" uid="uid://f65p7mjhpe20" path="res://script/frontend.gd" id="1_vs02b"]
 [ext_resource type="Theme" uid="uid://cxwxhao7ixvdr" path="res://theme.tres" id="2_nkr6t"]
 [ext_resource type="PackedScene" uid="uid://dd7kotp8gikuj" path="res://scenes/song_scenes/driftintothesun_scene.tscn" id="3_2lb60"]
+[ext_resource type="Theme" uid="uid://dl7hsxqj5hlts" path="res://button_theme.tres" id="3_cwtma"]
 [ext_resource type="PackedScene" uid="uid://ded4don8t8gwt" path="res://scenes/song_scenes/spydungeon_scene.tscn" id="4_s4fqh"]
 [ext_resource type="PackedScene" uid="uid://ch62adtgahhjb" path="res://scenes/song_scenes/foginthetv.tscn" id="5_mtvot"]
 [ext_resource type="PackedScene" uid="uid://bu7spjaendgs4" path="res://scenes/song_scenes/avoidthevoid_scene.tscn" id="6_s4fqh"]
@@ -85,6 +86,7 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_hv4f0")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon"]
@@ -95,6 +97,7 @@ previewMode = true
 
 [node name="rad148bpm" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
 layout_mode = 2
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_iwtne")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm"]
@@ -107,6 +110,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_s4fqh")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid"]
@@ -119,6 +123,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_fcry4")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/ok110bpm"]
@@ -129,6 +134,7 @@ previewMode = true
 
 [node name="151bpmsong" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
 layout_mode = 2
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_r476b")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/151bpmsong"]
@@ -139,6 +145,7 @@ previewMode = true
 
 [node name="darkalley" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
 layout_mode = 2
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_cwtma")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/darkalley"]
@@ -151,6 +158,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_kyb01")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spookybells"]
@@ -163,6 +171,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_12112")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/symbioteinmycomputer"]
@@ -175,6 +184,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_ih2vb")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/scaryrobotnoise"]
@@ -187,6 +197,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_07ks5")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/foginthetv"]
@@ -199,6 +210,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_xxknl")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/simulatedspace"]
@@ -211,6 +223,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_nkr6t")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/secretagent"]
@@ -223,6 +236,7 @@ previewMode = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
 icon = SubResource("ViewportTexture_vs02b")
 
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun"]
@@ -234,10 +248,9 @@ previewMode = true
 [node name="BackButton" type="Button" parent="."]
 visible = false
 z_index = 2
-offset_left = 1505.0
-offset_top = 9.0
-offset_right = 1592.0
-offset_bottom = 62.0
+offset_top = 52.0
+offset_right = 98.0
+offset_bottom = 109.0
 theme_override_font_sizes/font_size = 32
 text = "Back"
 
@@ -272,10 +285,9 @@ mouse_filter = 2
 
 [node name="Mute" type="Button" parent="."]
 z_index = 1
-offset_left = 1.0
-offset_top = 500.0
-offset_right = 100.0
-offset_bottom = 558.0
+offset_top = 111.0
+offset_right = 98.0
+offset_bottom = 169.0
 theme_override_font_sizes/font_size = 28
 text = "Mute"
 
