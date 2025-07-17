@@ -25,6 +25,7 @@ var prevVolume = 0.0
 @export var previewMode := false
 
 func _ready():
+	
 	if AudioServer.get_bus_effect_count(0) > 0:
 		spectrum = AudioServer.get_bus_effect_instance(0, 0)
 	else:
@@ -66,7 +67,6 @@ func _process(delta):
 	var fft = []
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
-	print("OUTPUT: SPYDUNGEON SETTING SHADER PARAMS")
 	spriteMaterial.set_shader_parameter("freq_data", fft)
 	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 
@@ -77,7 +77,6 @@ func _on_audio_start_timer_timeout():
 func _on_spydungeon_mouse_entered():
 	previewMode = false
 	audioStream.volume_linear = prevVolume
-	print("OUTPUT: SPYDUNGEON PREVIEW MODE DISABLED")
 
 func _on_spydungeon_mouse_exited():
 	previewMode = true

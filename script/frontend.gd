@@ -4,6 +4,7 @@ extends Node2D
 @onready var backButton = $BackButton as Button
 @onready var fullPanel = $fullscreenPanel
 @onready var backgroundTexture = $fullscreenPanel/background
+@onready var splashPanel = $splash
 
 var selectedButton
 var currentFullscreen
@@ -17,7 +18,6 @@ func _on_back_button_pressed():
 	buttonsPanel.visible = true
 	backButton.visible = false
 	fullPanel.visible = false
-	#currentFullscreen.print_tree_pretty()
 	var audio = currentFullscreen.find_child("AudioStreamPlayer") as AudioStreamPlayer
 	audio.volume_linear = 0.0
 	currentFullscreen.previewMode = true
@@ -32,12 +32,14 @@ func previewPressed(buttonPressed, shaderScene):
 	selectedButton = buttonPressed
 	shaderScene.reparent(fullPanel)
 	#buttonsPanel.get_tree().paused = true
-#	shaderScene.print_tree_pretty()
 	currentFullscreen = shaderScene
-	#var audio = shaderScene.get_node("AudioStreamPlayer") as AudioStreamPlayer
 	var audio = shaderScene.find_child("AudioStreamPlayer") as AudioStreamPlayer
 	audio.volume_linear = shaderScene.prevVolume
 	currentFullscreen.previewMode = false
+
+func _on_start_pressed():
+	splashPanel.visible = false
+	splashPanel.queue_free()
 
 func _on_mute_pressed():
 	var busIndex = AudioServer.get_bus_index("Master")

@@ -22,8 +22,9 @@ var prevVolume := 0.0
 @export var previewMode := false
 
 func _ready():
-	if AudioServer.get_bus_effect_count(0) > 0:
-		spectrum = AudioServer.get_bus_effect_instance(0, 0)
+	var busIndex = AudioServer.get_bus_index("Master")
+	if AudioServer.get_bus_effect_count(busIndex) > 0:
+		spectrum = AudioServer.get_bus_effect_instance(busIndex, 0)
 	else:
 		print("No effects found on bus 0. Please add an effect.")
 		spectrum = null

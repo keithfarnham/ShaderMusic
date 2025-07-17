@@ -25,8 +25,9 @@ var prevVolume := 0.0
 @export var previewMode := false
 
 func _ready():
-	if AudioServer.get_bus_effect_count(0) > 0:
-		spectrum = AudioServer.get_bus_effect_instance(0, 0)
+	var busIndex = AudioServer.get_bus_index("Master")
+	if AudioServer.get_bus_effect_count(busIndex) > 0:
+		spectrum = AudioServer.get_bus_effect_instance(busIndex, 0)
 	else:
 		print("No effects found on bus 0. Please add an effect.")
 		spectrum = null
@@ -79,7 +80,6 @@ func _process(delta):
 		sprite.material.set_shader_parameter("prevFrame", prevFrame)
 		sprite.material.set_shader_parameter("prevFrame2", prevFrame2)
 		framesWaited = 0
-	print("OUTPUT: RAD148 SETTING SHADER PARAMS")
 	sprite.material.set_shader_parameter("framesWaited", framesWaited)
 	sprite.material.set_shader_parameter("video", image_texture)
 
@@ -91,7 +91,6 @@ func _on_audio_start_timer_timeout():
 func _on_rad_148_bpm_mouse_entered():
 	previewMode = false
 	audioStream.volume_linear = prevVolume
-	print("OUTPUT: RAD148 PREVIEW MODE DISABLED")
 
 func _on_rad_148_bpm_mouse_exited():
 	previewMode = true

@@ -65,7 +65,7 @@ float sdParabola( in vec2 pos, in float k )
     float q = 0.25*ik*ik*pos.x;
     float h = q*q - p*p*p;
     float r = sqrt(abs(h));
-    float x = (h>0.0) ? 
+    float x = (h>0.0) ?
         pow(q+r,1.0/3.0) - pow(abs(q-r),1.0/3.0)*sign(r-q) :
         2.0*cos(atan(r,q)/3.0)*sqrt(p);
     return length(pos-vec2(x,k*x*x)) * sign(pos.x-x);
@@ -179,7 +179,7 @@ void fragment() {
         float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
         finalColor *= 1.0 - fadeProgress;
     }
-    
+
     vec3 background = vec3(0.01, 0.01, 0.05);
     background *= fft;
     finalColor.rgb = mix(background, finalColor.rgb, finalColor.a);
