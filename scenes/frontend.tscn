@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://o06dhycxveqi"]
+[gd_scene load_steps=30 format=3 uid="uid://o06dhycxveqi"]
 
 [ext_resource type="Script" uid="uid://f65p7mjhpe20" path="res://script/frontend.gd" id="1_vs02b"]
+[ext_resource type="Theme" uid="uid://cxwxhao7ixvdr" path="res://theme.tres" id="2_nkr6t"]
 [ext_resource type="PackedScene" uid="uid://dd7kotp8gikuj" path="res://scenes/song_scenes/driftintothesun_scene.tscn" id="3_2lb60"]
 [ext_resource type="PackedScene" uid="uid://ded4don8t8gwt" path="res://scenes/song_scenes/spydungeon_scene.tscn" id="4_s4fqh"]
 [ext_resource type="PackedScene" uid="uid://ch62adtgahhjb" path="res://scenes/song_scenes/foginthetv.tscn" id="5_mtvot"]
@@ -14,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://c6608023rfp00" path="res://scenes/song_scenes/darkalley_scene.tscn" id="12_ih2vb"]
 [ext_resource type="PackedScene" uid="uid://dhp3f04plvsef" path="res://scenes/song_scenes/151bpmsong.tscn" id="13_12112"]
 [ext_resource type="PackedScene" uid="uid://di3aiiuqoxme0" path="res://scenes/song_scenes/rad148bpm.tscn" id="14_kyb01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkr6t"]
+draw_center = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hv4f0"]
 viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport")
@@ -59,13 +63,14 @@ script = ExtResource("1_vs02b")
 
 [node name="ButtonsPanelContainer" type="PanelContainer" parent="."]
 z_index = 1
-offset_left = 111.0
-offset_top = 39.0
-offset_right = 1583.0
-offset_bottom = 875.0
+offset_left = 100.0
+offset_right = 1600.0
+offset_bottom = 900.0
 
 [node name="ButtonsScrollContainer" type="ScrollContainer" parent="ButtonsPanelContainer"]
 layout_mode = 2
+theme = ExtResource("2_nkr6t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nkr6t")
 horizontal_scroll_mode = 0
 
 [node name="ButtonsGridContainer" type="GridContainer" parent="ButtonsPanelContainer/ButtonsScrollContainer"]
@@ -267,14 +272,15 @@ mouse_filter = 2
 
 [node name="Mute" type="Button" parent="."]
 z_index = 1
-offset_left = 8.0
+offset_left = 1.0
 offset_top = 500.0
-offset_right = 107.0
+offset_right = 100.0
 offset_bottom = 558.0
 theme_override_font_sizes/font_size = 28
 text = "Mute"
 
 [node name="splash" type="Panel" parent="."]
+visible = false
 z_index = 1
 offset_right = 1600.0
 offset_bottom = 900.0
