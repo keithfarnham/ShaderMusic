@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://o06dhycxveqi"]
+[gd_scene load_steps=33 format=3 uid="uid://o06dhycxveqi"]
 
 [ext_resource type="Script" uid="uid://f65p7mjhpe20" path="res://script/frontend.gd" id="1_vs02b"]
 [ext_resource type="Theme" uid="uid://cxwxhao7ixvdr" path="res://theme.tres" id="2_nkr6t"]
 [ext_resource type="PackedScene" uid="uid://dd7kotp8gikuj" path="res://scenes/song_scenes/driftintothesun_scene.tscn" id="3_2lb60"]
 [ext_resource type="Theme" uid="uid://dl7hsxqj5hlts" path="res://button_theme.tres" id="3_cwtma"]
+[ext_resource type="PackedScene" uid="uid://b4nyqbwbvj6d8" path="res://scenes/song_scenes/swimminginspace.tscn" id="4_r476b"]
 [ext_resource type="PackedScene" uid="uid://ded4don8t8gwt" path="res://scenes/song_scenes/spydungeon_scene.tscn" id="4_s4fqh"]
 [ext_resource type="PackedScene" uid="uid://ch62adtgahhjb" path="res://scenes/song_scenes/foginthetv.tscn" id="5_mtvot"]
 [ext_resource type="PackedScene" uid="uid://bu7spjaendgs4" path="res://scenes/song_scenes/avoidthevoid_scene.tscn" id="6_s4fqh"]
@@ -58,6 +59,9 @@ viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGr
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vs02b"]
 viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pm6cx"]
+viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport")
 
 [node name="start_menu" type="Node2D"]
 script = ExtResource("1_vs02b")
@@ -245,6 +249,19 @@ size = Vector2i(480, 480)
 [node name="driftintothesun_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport" instance=ExtResource("3_2lb60")]
 previewMode = true
 
+[node name="swimming" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
+icon = SubResource("ViewportTexture_pm6cx")
+
+[node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming"]
+size = Vector2i(480, 480)
+
+[node name="swimming_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport" instance=ExtResource("4_r476b")]
+previewMode = true
+
 [node name="BackButton" type="Button" parent="."]
 visible = false
 z_index = 2
@@ -292,7 +309,6 @@ theme_override_font_sizes/font_size = 28
 text = "Mute"
 
 [node name="splash" type="Panel" parent="."]
-visible = false
 z_index = 1
 offset_right = 1600.0
 offset_bottom = 900.0
@@ -306,6 +322,21 @@ offset_bottom = 653.0
 theme_override_colors/icon_hover_color = Color(0.805228, 0.418967, 0.325879, 0.505882)
 theme_override_font_sizes/font_size = 72
 text = "START"
+
+[node name="soundwarning" type="RichTextLabel" parent="splash"]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 481.0
+offset_right = 1073.0
+offset_bottom = 613.0
+mouse_filter = 2
+theme_override_constants/outline_size = 28
+theme_override_font_sizes/normal_font_size = 24
+text = "THERE WILL BE SOUND
+
+HOVER OVER A SONG TO HEAR IT
+CLICK TO FULLSCREEN"
+horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport/spydungeon_scene" method="_on_spydungeon_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport/spydungeon_scene" method="_on_spydungeon_mouse_exited"]
@@ -346,6 +377,9 @@ text = "START"
 [connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport/driftintothesun_scene" method="_on_driftintothesun_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport/driftintothesun_scene" method="_on_driftintothesun_mouse_exited"]
 [connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="." method="_on_driftintothesun_pressed"]
+[connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport/swimming_scene" method="_on_swimming_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport/swimming_scene" method="_on_swimming_mouse_exited"]
+[connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming" to="." method="_on_swimming_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Mute" to="." method="_on_mute_pressed"]
 [connection signal="pressed" from="splash/start" to="." method="_on_start_pressed"]

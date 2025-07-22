@@ -40,6 +40,7 @@ func previewPressed(buttonPressed, shaderScene):
 func _on_start_pressed():
 	splashPanel.visible = false
 	splashPanel.queue_free()
+	
 
 func _on_mute_pressed():
 	var busIndex = AudioServer.get_bus_index("Master")
@@ -110,6 +111,11 @@ func _on_151bpmsong_pressed():
 func _on_rad_148_bpm_pressed():
 	var buttonNode = $"ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm"
 	var scene = buttonNode.get_node("SubViewport/rad148bpm_scene")
+	previewPressed(buttonNode, scene)
+
+func _on_swimming_pressed():
+	var buttonNode = $"ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming"
+	var scene = buttonNode.get_node("SubViewport/swimming_scene")
 	previewPressed(buttonNode, scene)
 
 

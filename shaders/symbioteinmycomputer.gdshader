@@ -173,12 +173,12 @@ void fragment() {
     vec4 finalColor = color(forward, right, up, rayOrigin, normalizedCoords, screenSize, uv, fft);
 
     //fade out at the end of the song
-    if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
-    {
-        float fadeDuration = songDuration - songFadeOutStart;
-        float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress;
-    }
+    // if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    // {
+    //     float fadeDuration = songDuration - songFadeOutStart;
+    //     float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress;
+    // }
 
     vec3 background = vec3(0.01, 0.01, 0.05);
     background *= fft;

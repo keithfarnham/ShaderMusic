@@ -1,0 +1,261 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4nyqbwbvj6d8"]
+
+[ext_resource type="Script" uid="uid://c6jhtwsv4meis" path="res://script/main_swimming.gd" id="1_dpmhp"]
+[ext_resource type="AudioStream" uid="uid://bs2lxlr5lswn1" path="res://audio/swimming.ogg" id="2_dpmhp"]
+[ext_resource type="Shader" uid="uid://dg3l10f3pep6k" path="res://shaders/swimming.gdshader" id="3_wsb3g"]
+[ext_resource type="Script" uid="uid://bpv4310tym2pt" path="res://script/debug_controls.gd" id="4_whqc2"]
+[ext_resource type="VideoStream" uid="uid://dbsss6i3r3md4" path="res://video/swimming_3-converted.ogv" id="5_dpmhp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
+resource_local_to_scene = true
+shader = ExtResource("3_wsb3g")
+shader_parameter/zoomValue = 2.0
+shader_parameter/pixelCoords_mod = Vector2(0, 0)
+shader_parameter/mouseScreenPos = Vector2(0, 0)
+shader_parameter/amplitude = 0.03
+shader_parameter/freqX = 10.0
+shader_parameter/freqSlow = 2.0
+shader_parameter/freqY = 5.0
+shader_parameter/fftMod = Vector3(0.045, -0.12, -0.82)
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/previewMode = false
+shader_parameter/msWaited = 0.0
+shader_parameter/BPM = 0.0
+shader_parameter/MS_PER_BEAT = 0.0
+shader_parameter/MS_PER_MEASURE = 0.0
+shader_parameter/iterGeometry = 3
+shader_parameter/iterFragment = 5
+shader_parameter/seaHeight = 0.6
+shader_parameter/seaChoppy = 4.0
+shader_parameter/seaSpeed = 2.0
+shader_parameter/seaFreq = 0.16
+shader_parameter/seaBase = Vector3(0, 0.09, 0.18)
+shader_parameter/seaWaterColor = Vector3(0.48, 0.54, 0.36)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxgvd"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_dpmhp")
+
+[node name="mainview" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="mainview"]
+
+[node name="Title" type="RichTextLabel" parent="mainview/Node2D"]
+z_index = 2
+offset_left = 12.0
+offset_right = 272.0
+offset_bottom = 50.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "SWIMMING"
+
+[node name="AudioStartTimer" type="Timer" parent="mainview/Node2D"]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="mainview/Node2D"]
+stream = ExtResource("2_dpmhp")
+
+[node name="shader_sprite" type="Sprite2D" parent="mainview/Node2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_2c62f")
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_dxgvd")
+
+[node name="DebugControls" type="Control" parent="mainview/Node2D"]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1394.0
+offset_top = 85.0
+offset_right = 1917.0
+offset_bottom = 488.0
+script = ExtResource("4_whqc2")
+
+[node name="DebugLabel" type="Label" parent="mainview/Node2D/DebugControls"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = -85.0
+offset_right = 403.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Debug Controls"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="VBoxContainer" parent="mainview/Node2D/DebugControls"]
+layout_mode = 2
+offset_right = 521.0
+offset_bottom = 373.0
+
+[node name="Palette1_red" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+drag_area_margin_begin = 965
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette1_red"]
+layout_mode = 2
+text = "Palette 1 - Red"
+
+[node name="Palette1_red" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette1_red"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette1_green" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette1_green"]
+layout_mode = 2
+text = "Palette 1 - Green"
+
+[node name="Palette1_green" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette1_green"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette1_blue" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette1_blue"]
+layout_mode = 2
+text = "Palette 1 - Blue"
+
+[node name="Palette1_blue" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette1_blue"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette2_red" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+drag_area_margin_begin = 965
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette2_red"]
+layout_mode = 2
+text = "Palette 2 - Red"
+
+[node name="Palette2_red" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette2_red"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette2_green" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette2_green"]
+layout_mode = 2
+text = "Palette 2 - Green"
+
+[node name="Palette2_green" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette2_green"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Palette2_blue" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette2_blue"]
+layout_mode = 2
+text = "Palette 2 - Blue"
+
+[node name="Palette2_blue" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/Palette2_blue"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="RayMod_x" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+drag_area_margin_begin = 965
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/RayMod_x"]
+layout_mode = 2
+text = "Ray Modifier X"
+
+[node name="raymod_x" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/RayMod_x"]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+
+[node name="RayMod_y" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/RayMod_y"]
+layout_mode = 2
+text = "Ray Modifier Y"
+
+[node name="raymod_y" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/RayMod_y"]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+
+[node name="RayMod_z" type="HSplitContainer" parent="mainview/Node2D/DebugControls/HBoxContainer"]
+layout_mode = 2
+split_offset = 165
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="mainview/Node2D/DebugControls/HBoxContainer/RayMod_z"]
+layout_mode = 2
+text = "Ray Modifier Z"
+
+[node name="raymod_z" type="HSlider" parent="mainview/Node2D/DebugControls/HBoxContainer/RayMod_z"]
+layout_mode = 2
+max_value = 2.0
+step = 0.01
+
+[node name="VideoSubViewport" type="SubViewport" parent="mainview/Node2D"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="mainview/Node2D/VideoSubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+stream = ExtResource("5_dpmhp")
+volume_db = -80.0
+expand = true
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="mainview/Node2D/AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/Palette1_red/Palette1_red" to="mainview/Node2D/DebugControls" method="_on_palette_1_red_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/Palette1_green/Palette1_green" to="mainview/Node2D/DebugControls" method="_on_palette_1_green_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/Palette1_blue/Palette1_blue" to="mainview/Node2D/DebugControls" method="_on_palette_1_blue_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/Palette2_red/Palette2_red" to="mainview/Node2D/DebugControls" method="_on_palette_2_red_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/Palette2_green/Palette2_green" to="mainview/Node2D/DebugControls" method="_on_palette_2_green_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/Palette2_blue/Palette2_blue" to="mainview/Node2D/DebugControls" method="_on_palette_2_blue_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/RayMod_x/raymod_x" to="mainview/Node2D/DebugControls" method="_on_raymod_x_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/RayMod_y/raymod_y" to="mainview/Node2D/DebugControls" method="_on_raymod_y_drag_ended"]
+[connection signal="drag_ended" from="mainview/Node2D/DebugControls/HBoxContainer/RayMod_z/raymod_z" to="mainview/Node2D/DebugControls" method="_on_raymod_z_drag_ended"]

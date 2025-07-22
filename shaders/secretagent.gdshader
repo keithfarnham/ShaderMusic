@@ -179,12 +179,12 @@ void fragment() {
     finalColor *= 1.5;
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
-    {
-        float fadeDuration = songDuration - songFadeOutStart;
-        float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress; // Fade out the color
-    }
+    // if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    // {
+    //     float fadeDuration = songDuration - songFadeOutStart;
+    //     float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress; // Fade out the color
+    // }
 
     finalColor = sqrt(finalColor);
     COLOR = finalColor;

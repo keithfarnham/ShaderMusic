@@ -226,13 +226,13 @@ void fragment() {
     finalColor = mix(background, finalColor, finalColor.a - finalAlphaReduction);
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
-    {
-        float fadeDuration = songDuration - songFadeOutStart;
-        float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress; // Fade out the color
-        finalColor.w = 1.0;
-    }
+    // if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    // {
+    //     float fadeDuration = songDuration - songFadeOutStart;
+    //     float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress; // Fade out the color
+    //     finalColor.w = 1.0;
+    // }
 
     COLOR = finalColor;
 }
