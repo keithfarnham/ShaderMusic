@@ -1,10 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://o06dhycxveqi"]
+[gd_scene load_steps=31 format=3 uid="uid://o06dhycxveqi"]
 
 [ext_resource type="Script" uid="uid://f65p7mjhpe20" path="res://script/frontend.gd" id="1_vs02b"]
 [ext_resource type="Theme" uid="uid://cxwxhao7ixvdr" path="res://theme.tres" id="2_nkr6t"]
 [ext_resource type="PackedScene" uid="uid://dd7kotp8gikuj" path="res://scenes/song_scenes/driftintothesun_scene.tscn" id="3_2lb60"]
 [ext_resource type="Theme" uid="uid://dl7hsxqj5hlts" path="res://button_theme.tres" id="3_cwtma"]
-[ext_resource type="PackedScene" uid="uid://b4nyqbwbvj6d8" path="res://scenes/song_scenes/swimminginspace.tscn" id="4_r476b"]
 [ext_resource type="PackedScene" uid="uid://ded4don8t8gwt" path="res://scenes/song_scenes/spydungeon_scene.tscn" id="4_s4fqh"]
 [ext_resource type="PackedScene" uid="uid://ch62adtgahhjb" path="res://scenes/song_scenes/foginthetv.tscn" id="5_mtvot"]
 [ext_resource type="PackedScene" uid="uid://bu7spjaendgs4" path="res://scenes/song_scenes/avoidthevoid_scene.tscn" id="6_s4fqh"]
@@ -60,9 +59,6 @@ viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGr
 [sub_resource type="ViewportTexture" id="ViewportTexture_vs02b"]
 viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pm6cx"]
-viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport")
-
 [node name="start_menu" type="Node2D"]
 script = ExtResource("1_vs02b")
 
@@ -96,7 +92,7 @@ icon = SubResource("ViewportTexture_hv4f0")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon"]
 size = Vector2i(480, 480)
 
-[node name="spydungeon_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport" instance=ExtResource("4_s4fqh")]
+[node name="spydungeon_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport" groups=["shader_scene"] instance=ExtResource("4_s4fqh")]
 previewMode = true
 
 [node name="rad148bpm" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -107,7 +103,7 @@ icon = SubResource("ViewportTexture_iwtne")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm"]
 size = Vector2i(480, 480)
 
-[node name="rad148bpm_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport" instance=ExtResource("14_kyb01")]
+[node name="rad148bpm_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport" groups=["shader_scene"] instance=ExtResource("14_kyb01")]
 previewMode = true
 
 [node name="avoidthevoid" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -120,7 +116,7 @@ icon = SubResource("ViewportTexture_s4fqh")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid"]
 size = Vector2i(480, 480)
 
-[node name="avoidthevoid_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid/SubViewport" instance=ExtResource("6_s4fqh")]
+[node name="avoidthevoid_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid/SubViewport" groups=["shader_scene"] instance=ExtResource("6_s4fqh")]
 previewMode = true
 
 [node name="ok110bpm" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -133,7 +129,7 @@ icon = SubResource("ViewportTexture_fcry4")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/ok110bpm"]
 size = Vector2i(480, 480)
 
-[node name="ok110bpm_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/ok110bpm/SubViewport" instance=ExtResource("7_hv4f0")]
+[node name="ok110bpm_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/ok110bpm/SubViewport" groups=["shader_scene"] instance=ExtResource("7_hv4f0")]
 previewMode = true
 
 [node name="151bpmsong" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -144,7 +140,7 @@ icon = SubResource("ViewportTexture_r476b")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/151bpmsong"]
 size = Vector2i(480, 480)
 
-[node name="151bpmsong_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/151bpmsong/SubViewport" instance=ExtResource("13_12112")]
+[node name="151bpmsong_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/151bpmsong/SubViewport" groups=["shader_scene"] instance=ExtResource("13_12112")]
 previewMode = true
 
 [node name="darkalley" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -155,7 +151,7 @@ icon = SubResource("ViewportTexture_cwtma")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/darkalley"]
 size = Vector2i(480, 480)
 
-[node name="darkalley_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/darkalley/SubViewport" instance=ExtResource("12_ih2vb")]
+[node name="darkalley_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/darkalley/SubViewport" groups=["shader_scene"] instance=ExtResource("12_ih2vb")]
 previewMode = true
 
 [node name="spookybells" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -168,7 +164,7 @@ icon = SubResource("ViewportTexture_kyb01")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spookybells"]
 size = Vector2i(480, 480)
 
-[node name="spookybells_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spookybells/SubViewport" instance=ExtResource("10_fcry4")]
+[node name="spookybells_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spookybells/SubViewport" groups=["shader_scene"] instance=ExtResource("10_fcry4")]
 previewMode = true
 
 [node name="symbioteinmycomputer" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -181,7 +177,7 @@ icon = SubResource("ViewportTexture_12112")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/symbioteinmycomputer"]
 size = Vector2i(480, 480)
 
-[node name="symbiote_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/symbioteinmycomputer/SubViewport" instance=ExtResource("9_07ks5")]
+[node name="symbiote_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/symbioteinmycomputer/SubViewport" groups=["shader_scene"] instance=ExtResource("9_07ks5")]
 previewMode = true
 
 [node name="scaryrobotnoise" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -194,7 +190,7 @@ icon = SubResource("ViewportTexture_ih2vb")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/scaryrobotnoise"]
 size = Vector2i(480, 480)
 
-[node name="scaryrobotnoise_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/scaryrobotnoise/SubViewport" instance=ExtResource("8_07ks5")]
+[node name="scaryrobotnoise_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/scaryrobotnoise/SubViewport" groups=["shader_scene"] instance=ExtResource("8_07ks5")]
 previewMode = true
 
 [node name="foginthetv" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -207,7 +203,7 @@ icon = SubResource("ViewportTexture_07ks5")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/foginthetv"]
 size = Vector2i(480, 480)
 
-[node name="foginthetv_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/foginthetv/SubViewport" instance=ExtResource("5_mtvot")]
+[node name="foginthetv_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/foginthetv/SubViewport" groups=["shader_scene"] instance=ExtResource("5_mtvot")]
 previewMode = true
 
 [node name="simulatedspace" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -220,7 +216,7 @@ icon = SubResource("ViewportTexture_xxknl")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/simulatedspace"]
 size = Vector2i(480, 480)
 
-[node name="simulatedspace_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/simulatedspace/SubViewport" instance=ExtResource("8_hv4f0")]
+[node name="simulatedspace_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/simulatedspace/SubViewport" groups=["shader_scene"] instance=ExtResource("8_hv4f0")]
 previewMode = true
 
 [node name="secretagent" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -233,7 +229,7 @@ icon = SubResource("ViewportTexture_nkr6t")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/secretagent"]
 size = Vector2i(480, 480)
 
-[node name="secretagent_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/secretagent/SubViewport" instance=ExtResource("11_xxknl")]
+[node name="secretagent_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/secretagent/SubViewport" groups=["shader_scene"] instance=ExtResource("11_xxknl")]
 previewMode = true
 
 [node name="driftintothesun" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -246,20 +242,7 @@ icon = SubResource("ViewportTexture_vs02b")
 [node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun"]
 size = Vector2i(480, 480)
 
-[node name="driftintothesun_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport" instance=ExtResource("3_2lb60")]
-previewMode = true
-
-[node name="swimming" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("3_cwtma")
-icon = SubResource("ViewportTexture_pm6cx")
-
-[node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming"]
-size = Vector2i(480, 480)
-
-[node name="swimming_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport" instance=ExtResource("4_r476b")]
+[node name="driftintothesun_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport" groups=["shader_scene"] instance=ExtResource("3_2lb60")]
 previewMode = true
 
 [node name="BackButton" type="Button" parent="."]
@@ -326,7 +309,7 @@ text = "START"
 [node name="soundwarning" type="RichTextLabel" parent="splash"]
 layout_mode = 0
 offset_left = 575.0
-offset_top = 481.0
+offset_top = 474.0
 offset_right = 1073.0
 offset_bottom = 613.0
 mouse_filter = 2
@@ -377,9 +360,6 @@ horizontal_alignment = 1
 [connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport/driftintothesun_scene" method="_on_driftintothesun_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun/SubViewport/driftintothesun_scene" method="_on_driftintothesun_mouse_exited"]
 [connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="." method="_on_driftintothesun_pressed"]
-[connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport/swimming_scene" method="_on_swimming_mouse_entered"]
-[connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming/SubViewport/swimming_scene" method="_on_swimming_mouse_exited"]
-[connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/swimming" to="." method="_on_swimming_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Mute" to="." method="_on_mute_pressed"]
 [connection signal="pressed" from="splash/start" to="." method="_on_start_pressed"]

@@ -7,11 +7,11 @@ const FREQ_MAX = 11050.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
 const HEIGHT_SCALE = 8.0
-const song = preload("res://audio/Avoid the Void.ogg")
+const SONG = preload("res://audio/Avoid the Void.ogg")
 const VIDEO_MODE = false
 
 @onready var sprite = $shader_sprite
-@onready var  spriteMaterial = $shader_sprite.material
+@onready var  spriteMaterial = $shader_sprite.material as ShaderMaterial
 @onready var audioStream = $AudioStreamPlayer
 
 var spectrum
@@ -22,6 +22,7 @@ var prevFrame2 : ImageTexture
 var framesToSkip := 60
 var framesWaited := 0
 var prevVolume = 0.0
+var visibleInScroll := false
 @export var previewMode := false
 
 func _ready():
@@ -35,7 +36,7 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
-	audioStream.stream = song
+	audioStream.stream = SONG
 	
 	if previewMode:
 		prevVolume = audioStream.volume_linear
@@ -46,8 +47,13 @@ func _start_audio():
 	audioStream.play()
 
 func _process(delta):
-	if previewMode:
+	visibleInScroll = true if global_position.y > -488.0 and global_position.y < 900.0 else false
+	spriteMaterial.set_shader_parameter("previewMode", previewMode)
+	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+	
+	if previewMode or !visibleInScroll:
 		return
+	
 	var prev_hz = 0
 	var data = []
 	for i in range(1, VU_COUNT + 1):
@@ -67,16 +73,17 @@ func _process(delta):
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	spriteMaterial.set_shader_parameter("freq_data", fft)
-	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 
 func _on_audio_start_timer_timeout():
 	if VIDEO_MODE:
 		audioStream.play()
 
 func _on_avoidthevoid_mouse_entered():
+	print("avoidthevoid mouse entered setting previewMode false")
 	previewMode = false
 	audioStream.volume_linear = prevVolume
 
 func _on_avoidthevoid_mouse_exited():
+	print("avoidthevoid mouse exited setting previewMode true")
 	previewMode = true
 	audioStream.volume_linear = 0.0

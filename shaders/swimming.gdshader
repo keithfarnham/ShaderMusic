@@ -177,20 +177,20 @@ float heightMapTracing(vec3 ori, vec3 dir, out vec3 p, float fft) {
     return mix(tm, tx, hm / (hm - hx));
 }
 
-vec4 color(vec2 coord, float time,  vec2 screenSize, float fft, vec2 uv) {    
+vec4 color(vec2 coord, float time,  vec2 screenSize, float fft, vec2 uv) {
     // ray
     vec3 ang = vec3(sin(time*3.0)*0.1,sin(time)*0.2+0.3,time);    
     vec3 ori = vec3(0.0,3.5,time*5.0);
     vec3 dir = normalize(vec3(coord,-2.0)); dir.z += length(coord) * 0.14;
     dir = normalize(dir) * fromEuler(ang);
-    
+
     // tracing
     vec3 p;
     heightMapTracing(ori,dir,p, fft);
     vec3 dist = p - ori;
     float epsilon_nrm  = (0.1 / screenSize.x);
     vec3 n = getNormal(p, dot(dist,dist) * epsilon_nrm);
-    vec3 light = normalize(vec3(0.0,1.0,0.8)); 
+    vec3 light = normalize(vec3(0.0,1.0,0.8));
              
     // color
     float alpha = 1.0;
@@ -198,6 +198,10 @@ vec4 color(vec2 coord, float time,  vec2 screenSize, float fft, vec2 uv) {
         getSkyColor(dir, fft),
         getSeaColor(p,n,light,dir,dist, fft),
     	pow(smoothstep(0.0,-0.02,dir.y),0.2)), alpha);
+
+    if (previewMode) {
+        return color;
+    }
 
     // video 
     vec2 tex_uv = uv * 4.0;
@@ -229,13 +233,13 @@ void fragment() {
     finalColor = vec4(pow(finalColor.rgb,vec3(0.8)), 1.0);
 
     //fade out at the end of the song
-    if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
-    {
-        float fadeDuration = songDuration - songFadeOutStart;
-        float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress; // Fade out the color
-        finalColor.w = 1.0;
-    }
+    // if (TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    // {
+    //     float fadeDuration = songDuration - songFadeOutStart;
+    //     float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress; // Fade out the color
+    //     finalColor.w = 1.0;
+    // }
 
     COLOR = finalColor;
 }

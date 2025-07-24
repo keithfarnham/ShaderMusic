@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var buttonsPanel = $ButtonsPanelContainer
+@onready var buttonsPanel = $ButtonsPanelContainer as PanelContainer
+@onready var buttonGrid = $ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer as GridContainer
 @onready var backButton = $BackButton as Button
 @onready var fullPanel = $fullscreenPanel
 @onready var backgroundTexture = $fullscreenPanel/background

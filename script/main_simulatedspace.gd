@@ -22,6 +22,7 @@ var prevFrame2 : ImageTexture
 var framesToSkip := 60
 var framesWaited := 0
 var prevVolume = 0.0
+var visibleInScroll := false
 @export var previewMode := false
 
 func _ready():
@@ -46,8 +47,13 @@ func _start_audio():
 	audioStream.play()
 
 func _process(delta):
-	if previewMode:
+	visibleInScroll = true if global_position.y > -488.0 and global_position.y < 900.0 else false
+	spriteMaterial.set_shader_parameter("previewMode", previewMode)
+	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+
+	if previewMode or !visibleInScroll:
 		return
+
 	var prev_hz = 0
 	var data = []
 	for i in range(1, VU_COUNT + 1):
@@ -67,7 +73,6 @@ func _process(delta):
 	for i in range(VU_COUNT):
 		fft.append(lerp(min_values[i], max_values[i], ANIMATION_SPEED))
 	spriteMaterial.set_shader_parameter("freq_data", fft)
-	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 
 func _on_audio_start_timer_timeout():
 	if VIDEO_MODE:
