@@ -48,7 +48,7 @@ func _start_audio():
 	audioStream.play()
 
 func _process(delta):
-	visibleInScroll = true if global_position.y > -488.0 and global_position.y < 900.0 else false
+	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and root.currentFullscreen == null else false
 	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
 	

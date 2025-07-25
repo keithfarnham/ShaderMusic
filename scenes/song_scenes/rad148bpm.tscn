@@ -33,6 +33,7 @@ shader_parameter/paletteColor1 = Vector3(0.08, 0.35, 0.405)
 shader_parameter/paletteColor2 = Vector3(0.4, 0.845, 0.7)
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/video = SubResource("ViewportTexture_unn3b")
+shader_parameter/visibleInScroll = true
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxgvd"]
 

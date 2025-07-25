@@ -33,6 +33,7 @@ uniform sampler2D prevFrame;
 uniform sampler2D prevFrame2;
 uniform sampler2D video;
 uniform bool previewMode = false;
+uniform bool visibleInScroll = true;
 
 const vec4 UP_VECTOR = vec4(0.0, 1.0, 2.0, 3.0);
 const float songDuration = 114.0; //108sec song duration + 6sec delay
@@ -184,6 +185,9 @@ vec4 color(vec3 forwardVector, vec3 rightVector, vec3 upVector, vec3 rayOrigin, 
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = FRAGCOORD.xy / screenSize;
     normalizedCoords *= zoomValue;

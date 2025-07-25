@@ -11,6 +11,7 @@ uniform float antiAliasBaseValue = 3.0;
 uniform float pixelCoords_X_mod = 0.0;
 uniform float pixelCoords_Y_mod = 0.0;
 uniform bool previewMode = false;
+uniform bool visibleInScroll = true;
 
 const int VU_COUNT = 1;
 uniform float[VU_COUNT] freq_data;
@@ -143,6 +144,9 @@ vec3 color(vec3 forwardVector, vec3 rightVector, vec3 upVector, vec3 rayOrigin, 
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = FRAGCOORD.xy / screenSize;
     vec2 adjustedCoords = -1.0 + 2.0 * normalizedCoords;

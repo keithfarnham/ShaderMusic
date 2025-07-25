@@ -42,6 +42,7 @@ shader_parameter/timeToWait = 1.0
 shader_parameter/waitStart = 0.0
 shader_parameter/framesWaited = 0
 shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
 shader_parameter/tex1 = ExtResource("4_5kipl")
 shader_parameter/tex2 = ExtResource("5_fhnx8")
 shader_parameter/tex3 = ExtResource("6_2nqpt")

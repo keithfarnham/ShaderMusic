@@ -28,6 +28,7 @@ shader_parameter/outsideColor1 = Vector3(-0.205, 0, -0.205)
 shader_parameter/outsideColor2 = Vector3(-0.255, 0, -0.21)
 shader_parameter/useUV = true
 shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]

@@ -14,6 +14,7 @@ shader_parameter/antiAliasBaseValue = 3.0
 shader_parameter/pixelCoords_X_mod = 0.0
 shader_parameter/pixelCoords_Y_mod = 0.0
 shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
 shader_parameter/freq_data = PackedFloat32Array(0)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]

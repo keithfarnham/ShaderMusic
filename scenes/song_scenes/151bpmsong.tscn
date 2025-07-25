@@ -35,6 +35,7 @@ shader_parameter/texture2 = ExtResource("5_okwqe")
 shader_parameter/texture3 = ExtResource("6_cegkj")
 shader_parameter/texture4 = ExtResource("7_7o4be")
 shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4gwn4"]
 

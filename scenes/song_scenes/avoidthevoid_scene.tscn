@@ -18,6 +18,7 @@ shader_parameter/pathA_X = 0.0
 shader_parameter/pathA_Y = 0.41
 shader_parameter/useUV = false
 shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gyfs4"]

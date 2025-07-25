@@ -22,6 +22,7 @@ uniform bool useUV = false;
 const int VU_COUNT = 100;
 uniform float[VU_COUNT] freq_data;
 uniform bool previewMode = false;
+uniform bool visibleInScroll = true;
 
 const vec2 PATH_A = vec2(0.31, 0.41);
 const vec2 PATH_B = vec2(1.0, sqrt(0.5));
@@ -152,6 +153,9 @@ vec3 color(vec3 forwardVector, vec3 rightVector, vec3 upVector, vec3 rayOrigin, 
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = FRAGCOORD.xy / screenSize;
     normalizedCoords -= 0.5;

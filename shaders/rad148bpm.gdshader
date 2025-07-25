@@ -24,6 +24,7 @@ uniform vec3 paletteColor2 = vec3(0.0);
 const int VU_COUNT = 100;
 uniform float[VU_COUNT] freq_data;
 uniform sampler2D video;
+uniform bool visibleInScroll = true;
 
 const vec4 UP_VECTOR = vec4(0.0, 1.0, 2.0, 3.0);
 const float songDuration = 76.0; //73sec song duration + 3sec delay
@@ -80,6 +81,9 @@ vec4 color(vec3 forwardVector, vec3 rightVector, vec3 upVector, vec3 rayOrigin, 
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = FRAGCOORD.xy / screenSize;
     normalizedCoords *= zoomValue;

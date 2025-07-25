@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/swimming.ogg-4114e7fe82252f0e1574daec1ce672c8
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0.0
 bpm=0.0
 beat_count=0

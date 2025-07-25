@@ -19,6 +19,7 @@ uniform sampler2D prevFrame;
 uniform sampler2D prevFrame2;
 uniform sampler2D video;
 uniform bool previewMode = false;
+uniform bool visibleInScroll = true;
 uniform float msWaited = 0.0;
 uniform float BPM;
 uniform float MS_PER_BEAT;
@@ -214,6 +215,9 @@ vec4 color(vec2 coord, float time,  vec2 screenSize, float fft, vec2 uv) {
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = -FRAGCOORD.xy / screenSize;
     normalizedCoords *= zoomValue;

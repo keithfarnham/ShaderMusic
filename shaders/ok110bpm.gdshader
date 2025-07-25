@@ -32,6 +32,7 @@ uniform float timeToWait = 1.0;
 uniform float waitStart = 0.0;
 uniform int framesWaited;
 uniform bool previewMode = false;
+uniform bool visibleInScroll = true;
 uniform sampler2D tex1;
 uniform sampler2D tex2;
 uniform sampler2D tex3;
@@ -220,6 +221,9 @@ vec4 color(vec3 forwardVector, vec3 rightVector, vec3 upVector, vec3 rayOrigin, 
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = FRAGCOORD.xy / screenSize;
     normalizedCoords *= zoomValue;

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 buses/default_bus_layout="uid://do5sfst75cu4q"
 general/default_playback_type.web=0
 
+[autoload]
+
+root="*res://script/frontend.gd"
+
 [display]
 
 window/size/viewport_width=1600

@@ -19,6 +19,7 @@ shader_parameter/freqY = 5.0
 shader_parameter/fftMod = Vector3(0.045, -0.12, -0.82)
 shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
 shader_parameter/msWaited = 0.0
 shader_parameter/BPM = 0.0
 shader_parameter/MS_PER_BEAT = 0.0

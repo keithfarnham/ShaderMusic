@@ -25,6 +25,7 @@ uniform vec3 outsideColor1 = vec3(0.5);
 uniform vec3 outsideColor2 = vec3(0.5);
 uniform bool useUV = false;
 uniform bool previewMode = false;
+uniform bool visibleInScroll = true;
 const int VU_COUNT = 10;
 uniform float[VU_COUNT] freq_data;
 
@@ -146,6 +147,9 @@ vec4 color(vec3 forwardVector, vec3 rightVector, vec3 upVector, vec3 rayOrigin, 
 }
 
 void fragment() {
+    if (!visibleInScroll){
+        discard;
+    }
     vec2 screenSize = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 normalizedCoords = FRAGCOORD.xy / screenSize;
     normalizedCoords -= 0.5;
