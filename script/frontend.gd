@@ -7,24 +7,35 @@ extends Node2D
 @onready var backgroundTexture = $fullscreenPanel/background
 @onready var splashPanel = $splash
 
-var selectedButton
-var currentFullscreen
-var backgroundNode
+@onready var fps = $fps as RichTextLabel
 
+var selectedButton
+
+func _process(delta):
+	fps.text = str(Engine.get_frames_per_second())
+	
+	if fullPanel.visible:
+		return
+	for button in buttonGrid.get_children():
+		var isOnscreen = button.global_position.y > -484.0 and button.global_position.y < 900.0
+		#Was seeing issues here when using button.find_child("SubViewport").get_tree().paused where pausing the buttons would pause the parent container, even with process mode set to always
+		#now i force it by setting the button processes to DISABLED instead
+		button.find_child("SubViewport").find_child(button.name + "_scene").process_mode = PROCESS_MODE_PAUSABLE if isOnscreen and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) else PROCESS_MODE_DISABLED
 func _on_back_button_pressed():
-	if selectedButton == null or currentFullscreen == null:
+	if selectedButton == null or Data.currentFullscreen == null:
 		print("cached button/scene are null")
 		return
-	#buttonsPanel.get_tree().paused = false
+	#buttonGrid.get_tree().paused = false
+	buttonGrid.process_mode = Node.PROCESS_MODE_PAUSABLE
 	buttonsPanel.visible = true
 	backButton.visible = false
 	fullPanel.visible = false
-	var audio = currentFullscreen.find_child("AudioStreamPlayer") as AudioStreamPlayer
+	var audio = Data.currentFullscreen.find_child("AudioStreamPlayer") as AudioStreamPlayer
 	audio.volume_linear = 0.0
-	currentFullscreen.previewMode = true
-	currentFullscreen.reparent(selectedButton.get_node("SubViewport"))
+	Data.currentFullscreen.previewMode = true
+	Data.currentFullscreen.reparent(selectedButton.get_node("SubViewport"))
 	selectedButton = null
-	currentFullscreen = null
+	Data.currentFullscreen = null
 
 func previewPressed(buttonPressed, shaderScene):
 	buttonsPanel.visible = false
@@ -32,16 +43,17 @@ func previewPressed(buttonPressed, shaderScene):
 	fullPanel.visible = true
 	selectedButton = buttonPressed
 	shaderScene.reparent(fullPanel)
-	#buttonsPanel.get_tree().paused = true
-	currentFullscreen = shaderScene
+	#buttonGrid.get_tree().paused = true
+	buttonGrid.process_mode = PROCESS_MODE_DISABLED
+	var currentFullscreen = shaderScene
 	var audio = shaderScene.find_child("AudioStreamPlayer") as AudioStreamPlayer
 	audio.volume_linear = shaderScene.prevVolume
 	currentFullscreen.previewMode = false
+	Data.currentFullscreen = currentFullscreen
 
 func _on_start_pressed():
 	splashPanel.visible = false
 	splashPanel.queue_free()
-	
 
 func _on_mute_pressed():
 	var busIndex = AudioServer.get_bus_index("Master")

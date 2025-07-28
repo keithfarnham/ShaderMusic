@@ -7,7 +7,7 @@ const FREQ_MAX = 10000.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
 const HEIGHT_SCALE = 100.0
-const song = preload("res://audio/secretagent.ogg")
+#const song = preload("res://audio/secretagent.ogg")
 const VIDEO_MODE = false
 
 @onready var sprite = $shader_sprite
@@ -36,8 +36,6 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
-	audioStream.stream = song
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 	if previewMode:
 		prevVolume = audioStream.volume_linear
@@ -48,7 +46,7 @@ func _start_audio():
 	audioStream.play()
 
 func _process(delta):
-	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and root.currentFullscreen == null else false
+	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) else false
 	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
 

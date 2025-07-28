@@ -10,7 +10,6 @@ const HEIGHT_SCALE = 100.0
 const BPM = 83.0
 const MS_PER_BEAT = 60000.0 / BPM
 const MS_PER_MEASURE = MS_PER_BEAT * 4
-const SONG = preload("res://audio/swimming.ogg")
 const VIDEO_MODE = false
 
 @onready var sprite = $mainview/Node2D/shader_sprite
@@ -40,7 +39,6 @@ func _ready():
 	min_values.fill(0.0)
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
-	audioStream.stream = SONG
 	spriteMaterial.set_shader_parameter("BPM", BPM);
 	spriteMaterial.set_shader_parameter("MS_PER_BEAT", MS_PER_BEAT);
 	spriteMaterial.set_shader_parameter("MS_PER_MEASURE", MS_PER_MEASURE);
@@ -48,14 +46,13 @@ func _ready():
 		prevVolume = audioStream.volume_linear
 		audioStream.volume_linear = 0.0
 		call_deferred("_start_audio")
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 func _start_audio():
 	audioStream.play()
 	vidViewport.get_node("VideoStreamPlayer").play()
 
 func _process(delta):
-	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and root.currentFullscreen == null else false
+	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) else false
 	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
 	

@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://5o6lpqnmujig"]
+
+[ext_resource type="Script" uid="uid://dwmgdjv0qoail" path="res://script/loadingscreen.gd" id="1_kodxk"]
+[ext_resource type="Shader" uid="uid://dl6fhomnso4h1" path="res://shaders/darkalley.gdshader" id="2_kodxk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr15a"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 0.960784)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jy0q2"]
+viewport_path = NodePath("loadingbar_viewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lol54"]
+shader = ExtResource("2_kodxk")
+shader_parameter/planeDist = 2.0
+shader_parameter/furthest = 10.0
+shader_parameter/fadeFrom = 0.405
+shader_parameter/fadeOutMod = 1.0
+shader_parameter/shapeRadius = 0.015
+shader_parameter/antiAliasBaseValue = 3.0
+shader_parameter/slowVal = 2.4
+shader_parameter/rayDepth = 1.75
+shader_parameter/rayDirMod = Vector3(0.82, -0.26, -0.61)
+shader_parameter/rayOriginMod = Vector3(0, 0, 0)
+shader_parameter/planeZMod = 0.0
+shader_parameter/zoomValue = 1.0
+shader_parameter/pixelCoords_mod = Vector2(0, 0)
+shader_parameter/pathA = Vector2(0, 0)
+shader_parameter/pathB = Vector2(0, 0)
+shader_parameter/paletteColor1 = Vector3(-0.07, -0.12, 0.135)
+shader_parameter/paletteColor2 = Vector3(-0.025, -0.1, -0.06)
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pexxm"]
+
+[node name="loadingscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_kodxk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lr15a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 715.0
+offset_top = 229.0
+offset_right = 883.0
+offset_bottom = 292.0
+theme_override_font_sizes/normal_font_size = 36
+text = "loading..."
+
+[node name="loadBar" type="TextureProgressBar" parent="Panel"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 302.0
+offset_right = 1507.0
+offset_bottom = 374.0
+value = 100.0
+texture_progress = SubResource("ViewportTexture_jy0q2")
+
+[node name="loadingbar_viewport" type="SubViewport" parent="."]
+size = Vector2i(1448, 72)
+
+[node name="shader_sprite" type="Sprite2D" parent="loadingbar_viewport"]
+material = SubResource("ShaderMaterial_lol54")
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_pexxm")

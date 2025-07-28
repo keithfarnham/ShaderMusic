@@ -22,7 +22,7 @@ general/default_playback_type.web=0
 
 [autoload]
 
-root="*res://script/frontend.gd"
+Data="*res://script/data.gd"
 
 [display]
 
