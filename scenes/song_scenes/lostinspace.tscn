@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=3 uid="uid://cw7m2hs54nlbc"]
+
+[ext_resource type="Script" uid="uid://dwnyr4tfnkd4a" path="res://script/main_lostinspace.gd" id="1_3t7v4"]
+[ext_resource type="Shader" uid="uid://d4g3c54u78dcd" path="res://shaders/lostinspace/lostinspace_dither.gdshader" id="2_pw7nb"]
+[ext_resource type="AudioStream" uid="uid://dg2wwiby35cqd" path="res://audio/lostinspace1.ogg" id="2_wprc6"]
+[ext_resource type="Shader" uid="uid://cetbw48sfufm" path="res://shaders/lostinspace/lostinspace_hyperspace.gdshader" id="3_3t7v4"]
+[ext_resource type="Shader" uid="uid://co3xf6tow54ig" path="res://shaders/lostinspace/lostinspace_sun.gdshader" id="3_pw7nb"]
+[ext_resource type="Shader" uid="uid://blgyrkjty51lo" path="res://shaders/lostinspace/lostinspace_grass.gdshader" id="4_3t7v4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_51ia2"]
+fractal_type = 3
+fractal_octaves = 1
+fractal_ping_pong_strength = 8.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pw7nb"]
+noise = SubResource("FastNoiseLite_51ia2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0snnc"]
+shader = ExtResource("2_pw7nb")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/zoomValue = 1.0
+shader_parameter/pixelCoords_mod = Vector2(0, 0)
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_pw7nb")
+shader_parameter/songDuration = 0.0
+shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_51ia2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uxse7"]
+shader = ExtResource("3_pw7nb")
+shader_parameter/planeDist = 10.0
+shader_parameter/furthest = 16.0
+shader_parameter/fadeFrom = 15.93
+shader_parameter/circleRadius = 1.0
+shader_parameter/antiAliasBaseValue = 3.0
+shader_parameter/pixelCoords_X_mod = 0.45
+shader_parameter/pixelCoords_Y_mod = -0.805
+shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
+shader_parameter/songDuration = 0.0
+shader_parameter/freq_data = PackedFloat32Array(0)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0snnc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51ia2"]
+shader = ExtResource("3_3t7v4")
+shader_parameter/songDuration = 162.0
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/zoomValue = 3.0
+shader_parameter/pixelCoords_mod = Vector2(620, 300)
+shader_parameter/useUV = true
+shader_parameter/visibleInScroll = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pw7nb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c62f"]
+resource_local_to_scene = true
+shader = ExtResource("4_3t7v4")
+shader_parameter/songDuration = 0.0
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/zoomValue = 1.0
+shader_parameter/pixelCoords_mod = Vector2(2000, 1200)
+shader_parameter/visibleInScroll = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxgvd"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_right = 1600.0
+offset_bottom = 900.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_3t7v4")
+
+[node name="Title2" type="RichTextLabel" parent="."]
+z_index = 2
+custom_minimum_size = Vector2(480, 50)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "LOST IN SPACE - PART 1"
+
+[node name="ditherfilter_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0snnc")
+position = Vector2(800, 450)
+scale = Vector2(1600, 900)
+texture = SubResource("PlaceholderTexture2D_51ia2")
+
+[node name="mainview" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1600, 900)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="mainview"]
+
+[node name="AudioStartTimer" type="Timer" parent="mainview/Node2D"]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="mainview/Node2D"]
+stream = ExtResource("2_wprc6")
+
+[node name="sun_sprite" type="Sprite2D" parent="mainview/Node2D"]
+material = SubResource("ShaderMaterial_uxse7")
+position = Vector2(800, 450)
+scale = Vector2(1600, 900)
+texture = SubResource("PlaceholderTexture2D_0snnc")
+
+[node name="background_sprite" type="Sprite2D" parent="mainview/Node2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_51ia2")
+position = Vector2(800, 450)
+scale = Vector2(1600, 900)
+texture = SubResource("PlaceholderTexture2D_pw7nb")
+
+[node name="grass_sprite" type="Sprite2D" parent="mainview/Node2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_2c62f")
+position = Vector2(800, 450)
+scale = Vector2(1600, 900)
+texture = SubResource("PlaceholderTexture2D_dxgvd")
+
+[connection signal="timeout" from="mainview/Node2D/AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
