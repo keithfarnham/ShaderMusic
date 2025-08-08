@@ -98,7 +98,7 @@ func _on_simulatedspace_pressed():
 
 func _on_symbioteinmycomputer_pressed():
 	var buttonNode = $ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/symbioteinmycomputer
-	var scene = buttonNode.get_node("SubViewport/symbiote_scene")
+	var scene = buttonNode.get_node("SubViewport/symbioteinmycomputer_scene")
 	previewPressed(buttonNode, scene)
 
 func _on_spookybells_pressed():
