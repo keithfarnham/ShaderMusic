@@ -1,0 +1,133 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2jc24st41cbu"]
+
+[ext_resource type="Script" uid="uid://d1a277ydokg6r" path="res://script/main_lostinspace2.gd" id="1_gojkb"]
+[ext_resource type="Shader" uid="uid://upo1asq1h4f8" path="res://shaders/lostinspace2/lostinspace2_dither.gdshader" id="2_gojkb"]
+[ext_resource type="AudioStream" uid="uid://c5307jpi7ak4g" path="res://audio/lostinspace2.ogg" id="3_gojkb"]
+[ext_resource type="AudioStream" uid="uid://ciftnag38fbul" path="res://audio/lostinspace3.ogg" id="4_i5rma"]
+[ext_resource type="Shader" uid="uid://cx0x3oc7tgxh2" path="res://shaders/lostinspace2/lostinspace2_hyperspace.gdshader" id="5_gojkb"]
+[ext_resource type="VideoStream" uid="uid://b6s2wo57ot045" path="res://video/lostinspace2.ogv" id="7_w5me5"]
+[ext_resource type="VideoStream" uid="uid://c1kih0slw7ukb" path="res://video/lostinspace3.ogv" id="8_6lnff"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gojkb"]
+noise_type = 5
+frequency = 0.1311
+fractal_type = 2
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i5rma"]
+noise = SubResource("FastNoiseLite_gojkb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0snnc"]
+shader = ExtResource("2_gojkb")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/zoomValue = 1.0
+shader_parameter/pixelCoords_mod = Vector2(0, 0)
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_i5rma")
+shader_parameter/songDuration = 0.0
+shader_parameter/previewMode = false
+shader_parameter/visibleInScroll = true
+shader_parameter/part2 = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_51ia2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51ia2"]
+shader = ExtResource("5_gojkb")
+shader_parameter/songDuration = 162.0
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/zoomValue = 2.0
+shader_parameter/pixelCoords_mod = Vector2(-188, -149)
+shader_parameter/visibleInScroll = true
+shader_parameter/previewMode = false
+shader_parameter/part2 = false
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pw7nb"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_right = 1600.0
+offset_bottom = 900.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_gojkb")
+
+[node name="Title" type="RichTextLabel" parent="."]
+z_index = 2
+custom_minimum_size = Vector2(480, 50)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 3
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "LOST IN SPACE - PART 2"
+
+[node name="ditherfilter_sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0snnc")
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_51ia2")
+
+[node name="mainview" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="mainview"]
+
+[node name="AudioStartTimer" type="Timer" parent="mainview/Node2D"]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="mainview/Node2D"]
+stream = ExtResource("3_gojkb")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="mainview/Node2D"]
+stream = ExtResource("4_i5rma")
+
+[node name="background_sprite" type="Sprite2D" parent="mainview/Node2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_51ia2")
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_pw7nb")
+
+[node name="Video1SubViewport" type="SubViewport" parent="mainview/Node2D"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Video1StreamPlayer" type="VideoStreamPlayer" parent="mainview/Node2D/Video1SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+stream = ExtResource("7_w5me5")
+volume_db = -80.0
+expand = true
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Video2SubViewport" type="SubViewport" parent="mainview/Node2D"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Video2StreamPlayer" type="VideoStreamPlayer" parent="mainview/Node2D/Video2SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+stream = ExtResource("8_6lnff")
+volume_db = -80.0
+expand = true
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="mainview/Node2D/AudioStartTimer" to="." method="_on_audio_start_timer_timeout"]
+[connection signal="finished" from="mainview/Node2D/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="mainview/Node2D/AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]

@@ -135,6 +135,12 @@ func _on_lostinspace1_pressed():
 	var buttonNode = $"ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1"
 	var scene = buttonNode.get_node("SubViewport/lostinspace1_scene")
 	previewPressed(buttonNode, scene)
+	
+
+func _on_lostinspace_23_pressed():
+	var buttonNode = $"ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3"
+	var scene = buttonNode.get_node("SubViewport/lostinspace2+3_scene")
+	previewPressed(buttonNode, scene)
 
 ##TODO fix background texture
 #func _on_spydungeon_mouse_entered():

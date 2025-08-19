@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://o06dhycxveqi"]
+[gd_scene load_steps=38 format=3 uid="uid://o06dhycxveqi"]
 
 [ext_resource type="Script" uid="uid://f65p7mjhpe20" path="res://script/frontend.gd" id="1_vs02b"]
 [ext_resource type="Theme" uid="uid://cxwxhao7ixvdr" path="res://theme.tres" id="2_nkr6t"]
 [ext_resource type="PackedScene" uid="uid://dd7kotp8gikuj" path="res://scenes/song_scenes/driftintothesun_scene.tscn" id="3_2lb60"]
 [ext_resource type="Theme" uid="uid://dl7hsxqj5hlts" path="res://button_theme.tres" id="3_cwtma"]
 [ext_resource type="PackedScene" uid="uid://ded4don8t8gwt" path="res://scenes/song_scenes/spydungeon_scene.tscn" id="4_s4fqh"]
+[ext_resource type="PackedScene" uid="uid://b2jc24st41cbu" path="res://scenes/song_scenes/lostinspace2.tscn" id="5_7vvvu"]
 [ext_resource type="PackedScene" uid="uid://ch62adtgahhjb" path="res://scenes/song_scenes/foginthetv.tscn" id="5_mtvot"]
 [ext_resource type="PackedScene" uid="uid://bu7spjaendgs4" path="res://scenes/song_scenes/avoidthevoid_scene.tscn" id="6_s4fqh"]
 [ext_resource type="PackedScene" uid="uid://b0gwyt7bty4da" path="res://scenes/song_scenes/ok110bpm.tscn" id="7_hv4f0"]
@@ -26,11 +27,14 @@ draw_center = false
 [sub_resource type="ViewportTexture" id="ViewportTexture_hv4f0"]
 viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iwtne"]
-viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_pm6cx"]
 viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qf4ln"]
+viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iwtne"]
+viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_s4fqh"]
 viewport_path = NodePath("ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid/SubViewport")
@@ -109,18 +113,6 @@ size = Vector2i(484, 482)
 [node name="spydungeon_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport" groups=["shader_scene"] instance=ExtResource("4_s4fqh")]
 previewMode = true
 
-[node name="rad148bpm" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
-process_mode = 1
-layout_mode = 2
-theme = ExtResource("3_cwtma")
-icon = SubResource("ViewportTexture_iwtne")
-
-[node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm"]
-size = Vector2i(484, 482)
-
-[node name="rad148bpm_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport" groups=["shader_scene"] instance=ExtResource("14_kyb01")]
-previewMode = true
-
 [node name="lostinspace1" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
 process_mode = 1
 layout_mode = 2
@@ -133,6 +125,32 @@ icon = SubResource("ViewportTexture_pm6cx")
 size = Vector2i(484, 482)
 
 [node name="lostinspace1_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1/SubViewport" instance=ExtResource("17_pm6cx")]
+previewMode = true
+
+[node name="lostinspace2+3" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_cwtma")
+icon = SubResource("ViewportTexture_qf4ln")
+
+[node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3"]
+size = Vector2i(484, 482)
+
+[node name="lostinspace2+3_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3/SubViewport" instance=ExtResource("5_7vvvu")]
+previewMode = true
+
+[node name="rad148bpm" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
+process_mode = 1
+layout_mode = 2
+theme = ExtResource("3_cwtma")
+icon = SubResource("ViewportTexture_iwtne")
+
+[node name="SubViewport" type="SubViewport" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm"]
+size = Vector2i(484, 482)
+
+[node name="rad148bpm_scene" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport" groups=["shader_scene"] instance=ExtResource("14_kyb01")]
 previewMode = true
 
 [node name="avoidthevoid" type="Button" parent="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer"]
@@ -352,17 +370,22 @@ z_index = 1
 offset_right = 1600.0
 offset_bottom = 900.0
 
-[node name="start" type="Button" parent="splash"]
+[node name="ColorRect" type="ColorRect" parent="splash"]
 layout_mode = 0
-offset_left = 446.0
-offset_top = 184.0
-offset_right = 1187.0
-offset_bottom = 653.0
-theme_override_colors/icon_hover_color = Color(0.805228, 0.418967, 0.325879, 0.505882)
+offset_left = 493.0
+offset_top = 199.0
+offset_right = 1234.0
+offset_bottom = 668.0
+color = Color(0, 0, 0, 0.890196)
+
+[node name="start" type="Button" parent="splash/ColorRect"]
+layout_mode = 0
+offset_right = 741.0
+offset_bottom = 469.0
 theme_override_font_sizes/font_size = 72
 text = "START"
 
-[node name="soundwarning" type="RichTextLabel" parent="splash/start"]
+[node name="soundwarning" type="RichTextLabel" parent="splash/ColorRect/start"]
 layout_mode = 0
 offset_left = 129.0
 offset_top = 290.0
@@ -391,12 +414,15 @@ text = "a"
 [connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport/spydungeon_scene" method="_on_spydungeon_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon/SubViewport/spydungeon_scene" method="_on_spydungeon_mouse_exited"]
 [connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/spydungeon" to="." method="_on_spydungeon_pressed"]
-[connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport/rad148bpm_scene" method="_on_rad_148_bpm_mouse_entered"]
-[connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport/rad148bpm_scene" method="_on_rad_148_bpm_mouse_exited"]
-[connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm" to="." method="_on_rad_148_bpm_pressed"]
 [connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1/SubViewport/lostinspace1_scene" method="_on_lostinspace1_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1/SubViewport/lostinspace1_scene" method="_on_lostinspace1_mouse_exited"]
 [connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace1" to="." method="_on_lostinspace1_pressed"]
+[connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3/SubViewport/lostinspace2+3_scene" method="_on_lostinspace_23_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3/SubViewport/lostinspace2+3_scene" method="_on_lostinspace_23_mouse_exited"]
+[connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/lostinspace2+3" to="." method="_on_lostinspace_23_pressed"]
+[connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport/rad148bpm_scene" method="_on_rad_148_bpm_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm/SubViewport/rad148bpm_scene" method="_on_rad_148_bpm_mouse_exited"]
+[connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/rad148bpm" to="." method="_on_rad_148_bpm_pressed"]
 [connection signal="mouse_entered" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid/SubViewport/avoidthevoid_scene" method="_on_avoidthevoid_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid" to="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid/SubViewport/avoidthevoid_scene" method="_on_avoidthevoid_mouse_exited"]
 [connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/avoidthevoid" to="." method="_on_avoidthevoid_pressed"]
@@ -435,4 +461,4 @@ text = "a"
 [connection signal="pressed" from="ButtonsPanelContainer/ButtonsScrollContainer/ButtonsGridContainer/driftintothesun" to="." method="_on_driftintothesun_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Mute" to="." method="_on_mute_pressed"]
-[connection signal="pressed" from="splash/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="splash/ColorRect/start" to="." method="_on_start_pressed"]
