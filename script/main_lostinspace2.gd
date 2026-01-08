@@ -10,7 +10,7 @@ const HEIGHT_SCALE = 100.0
 const BPM = 79.0
 const MS_PER_BEAT = 60000.0 / BPM
 const MS_PER_MEASURE = MS_PER_BEAT * 4 #song is 4/4
-const VIDEO_MODE = true
+const VIDEO_MODE = false
 const SONG_DURATION = 161.0 #155 + 6sec delay
 const SONG2_DURATION = 124.0
 
@@ -34,6 +34,11 @@ var visibleInScroll := false
 var part2 := true
 @export var previewMode := false
 
+func set_preview_mode(setPreview : bool):
+	previewMode = setPreview
+	backgroundMaterial.set_shader_parameter("previewMode", previewMode)
+	ditherMaterial.set_shader_parameter("previewMode", previewMode)
+
 func _ready():
 	var busIndex = AudioServer.get_bus_index("Master")
 	if AudioServer.get_bus_effect_count(busIndex) > 0:
@@ -46,31 +51,35 @@ func _ready():
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
 	ditherMaterial.set_shader_parameter("songDuration", SONG_DURATION)
+	backgroundMaterial.set_shader_parameter("part2", part2)
+	ditherMaterial.set_shader_parameter("part2", part2)
 
 	if previewMode:
 		prevVolume = audioStream.volume_linear
 		audioStream.volume_linear = 0.0
+		audioStream2.volume_linear = 0.0
 		call_deferred("_start_audio")
 	
 func _start_audio():
 	audioStream.play()
 
 func _process(delta):
+	var prevVisibleInScroll = visibleInScroll
 	visibleInScroll = true if ( VIDEO_MODE or (global_position.y > -488.0 and global_position.y < 900.0) and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) ) else false
-	backgroundMaterial.set_shader_parameter("previewMode", previewMode)
-	ditherMaterial.set_shader_parameter("previewMode", previewMode)
-	backgroundMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
-	ditherMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
-	backgroundMaterial.set_shader_parameter("part2", part2)
-	ditherMaterial.set_shader_parameter("part2", part2)
+	if prevVisibleInScroll != visibleInScroll:
+		backgroundMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+		ditherMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+	
+	if previewMode or !visibleInScroll:
+		$ditherfilter_sprite.visible = false
+		return
+	
+	$ditherfilter_sprite.visible = true
 	
 	var mainImage = mainViewport.get_texture().get_image()
 	var mainImage_texture = ImageTexture.create_from_image(mainImage)
 	ditherMaterial.set_shader_parameter("mainImage", mainImage_texture)
-	
-	if previewMode or !visibleInScroll:
-		return
-		
+
 	var prev_hz = 0
 	var data = []
 	for i in range(1, VU_COUNT + 1):
@@ -106,16 +115,23 @@ func _on_audio_start_timer_timeout():
 
 func _on_lostinspace_23_mouse_entered():
 	previewMode = false
+	backgroundMaterial.set_shader_parameter("previewMode", previewMode)
+	ditherMaterial.set_shader_parameter("previewMode", previewMode)
 	audioStream.volume_linear = prevVolume
+	audioStream2.volume_linear = prevVolume
 
 func _on_lostinspace_23_mouse_exited():
 	previewMode = true
+	backgroundMaterial.set_shader_parameter("previewMode", previewMode)
+	ditherMaterial.set_shader_parameter("previewMode", previewMode)
 	audioStream.volume_linear = 0.0
+	audioStream2.volume_linear = 0.0
 
 func _on_audio_stream_player_finished():
 	#start the second song
 	part2 = false
-	ditherMaterial.set_shader_parameter("part2", false)
+	backgroundMaterial.set_shader_parameter("part2", part2)
+	ditherMaterial.set_shader_parameter("part2", part2)
 	$Title.text = "LOST IN SPACE - PART 3"
 	audioStream2.play()
 	video1Viewport.get_node("Video1StreamPlayer").play()
@@ -124,7 +140,8 @@ func _on_audio_stream_player_finished():
 
 func _on_audio_stream_player_2_finished():
 	part2 = true
-	ditherMaterial.set_shader_parameter("part2", true)
+	backgroundMaterial.set_shader_parameter("part2", part2)
+	ditherMaterial.set_shader_parameter("part2", part2)
 	$Title.text = "LOST IN SPACE - PART 2"
 	audioStream.play()
 	video1Viewport.get_node("Video1StreamPlayer").stop()

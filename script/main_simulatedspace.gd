@@ -2,7 +2,7 @@ extends Node2D
 
 #spectrum analysis code from https://godotshaders.com/shader/spectrum-analyzer/
 
-const VU_COUNT = 100 #match up this value with whatever VU_COUNT is in the shader
+const VU_COUNT = 25 #match up this value with whatever VU_COUNT is in the shader
 const FREQ_MAX = 10000.0
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
@@ -24,6 +24,10 @@ var framesWaited := 0
 var prevVolume = 0.0
 var visibleInScroll := false
 @export var previewMode := false
+
+func set_preview_mode(setPreview : bool):
+	previewMode = setPreview
+	spriteMaterial.set_shader_parameter("previewMode", previewMode)
 
 func _ready():
 	var busIndex = AudioServer.get_bus_index("Master")
@@ -47,9 +51,10 @@ func _start_audio():
 	audioStream.play()
 
 func _process(delta):
+	var prevVisibleInScroll = visibleInScroll
 	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) else false
-	spriteMaterial.set_shader_parameter("previewMode", previewMode)
-	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+	if prevVisibleInScroll != visibleInScroll:
+		spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
 
 	if previewMode or !visibleInScroll:
 		return

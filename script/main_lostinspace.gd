@@ -31,6 +31,10 @@ var prevVolume := 0.0
 var visibleInScroll := false
 @export var previewMode := false
 
+func set_preview_mode(setPreview : bool):
+	previewMode = setPreview
+	ditherMaterial.set_shader_parameter("previewMode", previewMode)
+
 func _ready():
 	var busIndex = AudioServer.get_bus_index("Master")
 	if AudioServer.get_bus_effect_count(busIndex) > 0:
@@ -61,17 +65,22 @@ func _start_audio():
 	#vidViewport.get_node("VideoStreamPlayer").play()
 
 func _process(delta):
+	var prevVisibleInScroll = visibleInScroll
 	visibleInScroll = true if ( VIDEO_MODE or (global_position.y > -488.0 and global_position.y < 900.0) and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) ) else false
-	ditherMaterial.set_shader_parameter("previewMode", previewMode)
-	grassMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
-	sunMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
-	backgroundMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
-	ditherMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+	if prevVisibleInScroll != visibleInScroll:
+		grassMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+		sunMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+		backgroundMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+		ditherMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+	
+	if !visibleInScroll:
+		return
+	
 	var image = mainViewport.get_texture().get_image()
 	var image_texture = ImageTexture.create_from_image(image)
 	ditherMaterial.set_shader_parameter("video", image_texture)
 	
-	if previewMode or !visibleInScroll:
+	if previewMode:
 		return
 		
 	var prev_hz = 0

@@ -17,7 +17,7 @@ uniform bool useUV = false;
 uniform bool previewMode = false;
 uniform bool visibleInScroll = true;
 
-const int VU_COUNT = 100;
+const int VU_COUNT = 25;
 uniform float[VU_COUNT] freq_data;
 
 const vec2 PATH_A = vec2(0.31, 0.41);
@@ -79,7 +79,7 @@ vec4 plane(vec3 planePosition, vec3 normalizedPlanePosition, float planeDistance
     float circleDistance = sdCircle(adjustedPlanePosition / 2.0, radius); // Adjusted position and radius for proper scaling
 
     colorOutput.xyz = palette(0.5 * planeIndex + 2.0 * circleDistance);
-    colorOutput.xyz *= fft + 1.0; //modulating color with fft
+    colorOutput.xyz *= fft * 0.15; //modulating color with fft
     colorOutput.w = smoothstep(antiAliasingFactor, -antiAliasingFactor, circleDistance);
     return colorOutput;
 }

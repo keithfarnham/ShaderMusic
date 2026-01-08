@@ -12,7 +12,7 @@ config_version=5
 
 config/name="ShaderMusic"
 run/main_scene="uid://o06dhycxveqi"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
@@ -26,14 +26,18 @@ Data="*res://script/data.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/movie_file="F:/Keith's Backups/Videos/movie.avi"
 
 [editor]
 
 movie_writer/movie_file="F:/Keith's Backups/Videos/movie.avi"
+
+[physics]
+
+common/physics_ticks_per_second=1
+common/max_physics_steps_per_frame=1
 
 [rendering]
 

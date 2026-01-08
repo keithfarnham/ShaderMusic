@@ -182,13 +182,13 @@ void fragment() {
     finalColor.xyz *= finalColorMod;
 
     //fade out at the end of the song
-    if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
-    {
-        float fadeDuration = songDuration - songFadeOutStart;
-        float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
-        finalColor *= 1.0 - fadeProgress; // Fade out the color
-        finalColor.w = 1.0;
-    }
+    // if (!previewMode && TIME >= songFadeOutStart && songFadeOutStart <= songDuration)
+    // {
+    //     float fadeDuration = songDuration - songFadeOutStart;
+    //     float fadeProgress = clamp((TIME - songFadeOutStart) / fadeDuration, 0.0, 1.0);
+    //     finalColor *= 1.0 - fadeProgress; // Fade out the color
+    //     finalColor.w = 1.0;
+    // }
 
     vec4 background = vec4(0.0, 0.0, 0.0, 0.5);
     background.xyz = palette(fft);

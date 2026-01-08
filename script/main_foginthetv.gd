@@ -26,6 +26,10 @@ var prevVolume := 0.0
 var visibleInScroll := false
 @export var previewMode := false
 
+func set_preview_mode(setPreview : bool):
+	previewMode = setPreview
+	spriteMaterial.set_shader_parameter("previewMode", previewMode)
+
 func _ready():
 	var busIndex = AudioServer.get_bus_index("Master")
 	if AudioServer.get_bus_effect_count(busIndex) > 0:
@@ -48,9 +52,10 @@ func _start_audio():
 	viewport.get_node("VideoStreamPlayer").play()
 
 func _process(delta):
+	var prevVisibleInScroll = visibleInScroll
 	visibleInScroll = true if (global_position.y > -488.0 and global_position.y < 900.0) and (Data.currentFullscreen == null or Data.currentFullscreen.name == name) else false
-	spriteMaterial.set_shader_parameter("previewMode", previewMode)
-	spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
+	if prevVisibleInScroll != visibleInScroll:
+		spriteMaterial.set_shader_parameter("visibleInScroll", visibleInScroll)
 	
 	if previewMode or !visibleInScroll:
 		return
